@@ -5,7 +5,5 @@ import EntryApp from './screens/EntryApp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <EntryApp />
-  </React.StrictMode>
+  <EntryApp />
 );
