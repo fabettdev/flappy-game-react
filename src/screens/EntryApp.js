@@ -1,4 +1,4 @@
-import Player from '../components/funcComponents/player/Player';
+import Player from '../components/hooksComponents/player/Player';
 
 function EntryApp() {
   return (
