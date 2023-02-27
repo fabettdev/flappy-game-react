@@ -1,23 +1,10 @@
-import logo from '../assets/images/logo.svg';
-import '../styles/entryApp/entryApp.css';
+import Player from '../components/hooksComponents/player/Player';
 
 function EntryApp() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Test Branch gio <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Player action={'moving'} posNumber={7} />
+      <Player action={'hurt'} posNumber={7} />
     </div>
   );
 }

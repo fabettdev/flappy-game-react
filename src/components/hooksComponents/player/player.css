@@ -1,0 +1,74 @@
+.player {
+  display: inline-block;
+  border: 1px solid lightgray;
+}
+
+/* Moving Action */
+
+.player.moving {
+  width: 131px;
+  height: 72px;
+  background-image: url(../../../assets/images/player/player-swiming.png);
+  background-size: 1500px;
+  background-repeat: no-repeat;
+  background-position-y: -76px;
+}
+
+.player.moving.pos1 {
+  background-position-x: -40px;
+}
+
+.player.moving.pos2 {
+  background-position-x: -254px;
+}
+
+.player.moving.pos3 {
+  background-position-x: -468px;
+}
+
+.player.moving.pos4 {
+  background-position-x: -683px;
+}
+
+.player.moving.pos5 {
+  background-position-x: -897px;
+}
+
+.player.moving.pos6 {
+  background-position-x: -1111px;
+}
+
+.player.moving.pos7 {
+  background-position-x: -1325px;
+}
+
+/* Hurt Action */
+
+.player.hurt {
+  width: 135px;
+  height: 135px;
+  background-image: url(../../../assets/images/player/player-hurt.png);
+  background-size: 1000px;
+  background-repeat: no-repeat;
+  background-position-y: -35px;
+}
+
+.player.hurt.pos1 {
+  background-position-x: -40px;
+}
+
+.player.hurt.pos2 {
+  background-position-x: -240px;
+}
+
+.player.hurt.pos3 {
+  background-position-x: -440px;
+}
+
+.player.hurt.pos4 {
+  background-position-x: -640px;
+}
+
+.player.hurt.pos5 {
+  background-position-x: -840px;
+}
