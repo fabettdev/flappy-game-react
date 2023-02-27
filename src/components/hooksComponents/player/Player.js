@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import './player.css';
 // import Spritesheet from 'react-responsive-spritesheet';
 
-function Player() {
+function Player(props) {
     const [state, setState] = useState(
         {
             classIndex: 1,
@@ -23,7 +23,7 @@ function Player() {
     }, [state.classIndex]);
 
     return (
-        <div className={`player swim${state.classIndex}`}></div>
+        <div className={`player swim${state.classIndex}`} style={props.playerStyle}></div>
     )
 }
 
