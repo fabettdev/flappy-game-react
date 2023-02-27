@@ -1,0 +1,35 @@
+.player {
+  display: inline-block;
+  width: 10rem;
+  height: 5rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.player.swim1 {
+  background-image: url(../../../assets/images/player/swimming/player-swiming1.png);
+}
+
+.player.swim2 {
+  background-image: url(../../../assets/images/player/swimming/player-swiming2.png);
+}
+
+.player.swim3 {
+  background-image: url(../../../assets/images/player/swimming/player-swiming3.png);
+}
+
+.player.swim4 {
+  background-image: url(../../../assets/images/player/swimming/player-swiming4.png);
+}
+
+.player.swim5 {
+  background-image: url(../../../assets/images/player/swimming/player-swiming5.png);
+}
+
+.player.swim6 {
+  background-image: url(../../../assets/images/player/swimming/player-swiming6.png);
+}
+
+.player.swim7 {
+  background-image: url(../../../assets/images/player/swimming/player-swiming7.png);
+}

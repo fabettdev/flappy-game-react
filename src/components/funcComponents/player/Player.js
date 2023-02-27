@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import './player.css';
+// import Spritesheet from 'react-responsive-spritesheet';
 
-function Player(props) {
+function Player() {
     const [state, setState] = useState(
         {
             classIndex: 1,
@@ -10,22 +11,19 @@ function Player(props) {
 
     useEffect(() => {
         let newIndex = null;
-        state.classIndex === props.posNumber ? newIndex = 1 : newIndex = state.classIndex + 1;
-        if (props.action === 'hurt') {
-            if (state.classIndex === 5) return () => clearTimeout(timeout);
-        }
+        state.classIndex === 7 ? newIndex = 1 : newIndex = state.classIndex + 1;
         const timeout = setTimeout(() => {
             setState(
                 {
                     classIndex: newIndex,
                 }
             )
-        }, 75)
+        }, 100)
         return () => clearTimeout(timeout);
     }, [state.classIndex]);
 
     return (
-        <div className={`player ${props.action} pos${state.classIndex}`}></div>
+        <div className={`player swim${state.classIndex}`}></div>
     )
 }
 
