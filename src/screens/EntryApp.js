@@ -32,7 +32,7 @@ class EntryApp extends Component {
 
   componentDidUpdate() {
     clearTimeout(this.gravityTimeout);
-    if (this.state.translatePlayerY >= 90) return;
+    //if (this.state.translatePlayerY >= 90) return;
     this.gravityTimeout = setTimeout(() => {
       this.setState({
         translatePlayerY: this.state.translatePlayerY + 0.8,
@@ -48,10 +48,15 @@ class EntryApp extends Component {
     )
   }
 
+  spawnRand = () => {
+
+  }
+
   componentWillUnmount() {
   }
 
   render() {
+    const variable = 2
     return (
       <div className="App" style={{ position: 'relative', height: '100vh' }} onClick={this.playerTap}>
         <BackgroundCss>
@@ -62,7 +67,9 @@ class EntryApp extends Component {
               transform: 'translateY(-50%)',
             }}
           />
-          <Fish />
+          <Fish
+            spawnHeight='400'
+          />
           {/* <Fish fishType={'big'} />
           <Fish fishType={'dart'} /> */}
         </BackgroundCss>

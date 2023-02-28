@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import './player.css';
+import eventsBus from "../../../utils/eventBus";
 // import Spritesheet from 'react-responsive-spritesheet';
 
 function Player(props) {
@@ -12,6 +13,7 @@ function Player(props) {
     const playerRef = useRef(null);
 
     useEffect(() => {
+        eventsBus.dispatch('onSwim', playerRef.current.getBoundingClientRect())
         // console.log(playerRef.current.getBoundingClientRect())
         let newIndex = null;
         state.classIndex === 7 ? newIndex = 1 : newIndex = state.classIndex + 1;
