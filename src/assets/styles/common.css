@@ -39,3 +39,45 @@ code {
   height: 100%;
   margin: 0;
 }
+
+/* .my-canvas {
+  width: 100%;
+  height: 100%;
+} */
+
+.background-container {
+  height: 100vh;
+  width: 900px;
+  max-width: 900px;
+  position: relative;
+}
+
+.background-css {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/environment/background.png);
+  background-size: cover;
+  background-repeat: repeat-x;
+  animation: parallax 20s linear infinite;
+}
+
+.midground-css {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/environment/midground.png);
+  background-size: cover;
+  background-repeat: repeat-x;
+  animation: parallax 10s linear infinite;
+}
+
+@keyframes parallax {
+  from {
+    background-position-x: 0px;
+  }
+
+  to {
+    background-position-x: -5000px;
+  }
+}

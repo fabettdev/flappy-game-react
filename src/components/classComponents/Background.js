@@ -30,8 +30,21 @@ export default class Background extends Component {
     componentDidMount() {
         this.canvas = this.contextRef.current
         this.ctx = this.canvas.getContext('2d')
-        this.canvasWidth = this.canvas.width = 500
+        /* this.canvasWidth = this.canvas.width = window.innerWidth
+        this.canvasHeight = this.canvas.height = window.innerHeight */
+
+        this.canvasWidth = this.canvas.width = 288
         this.canvasHeight = this.canvas.height = 256
+        /* this.canvas.width = this.canvas.height *
+            (this.canvas.clientWidth / this.canvas.clientHeight); */
+
+        //this.ctx.transform(4, 0, 0, 4, 0, 0)
+
+        /* let region = new Path2D();
+        region.rect(0, 0, 150, 900);
+        this.ctx.clip(region); */
+
+
         this.middlegroundElement = this.middlegroundRef.current
         this.backgroundElement = this.backgroundRef.current
 
@@ -78,7 +91,7 @@ export default class Background extends Component {
 
     render() {
         return (
-            <canvas ref={this.contextRef}>
+            <canvas ref={this.contextRef} className='my-canvas'>
                 <img src={background} ref={this.backgroundRef}></img>
                 <img src={middleground} ref={this.middlegroundRef}></img>
             </canvas>

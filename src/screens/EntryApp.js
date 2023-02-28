@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Player from '../components/hooksComponents/player/Player';
 import '../assets/styles/common.css';
 import Background from '../components/classComponents/Background';
+import BackgroundCss from '../components/classComponents/BackgroundCss';
 
 class EntryApp extends Component {
   constructor(props) {
@@ -53,11 +54,11 @@ class EntryApp extends Component {
   render() {
     return (
       <div className="App" style={{ position: 'relative', height: '100vh' }} onClick={this.playerTap}>
+        <BackgroundCss />
         <Player playerStyle={{
           top: `${this.state.translateY}%`,
           transform: 'translateY(-50%)',
         }} />
-        <Background />
       </div>
     )
   }
