@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Player from '../components/hooksComponents/player/Player';
 import '../assets/styles/common.css';
-import Background from '../components/classComponents/Background';
 import BackgroundCss from '../components/classComponents/BackgroundCss';
 import Fish from '../components/hooksComponents/fish/Fish';
 
@@ -13,7 +12,7 @@ class EntryApp extends Component {
     this.playerInterval = null;
 
     this.state = {
-      translateY: 50,
+      translatePlayerY: 50,
     }
   }
 
@@ -21,11 +20,11 @@ class EntryApp extends Component {
   }
 
   /*  componentDidUpdate() {
-     if (this.state.translateY >= 90) return clearInterval(this.gravityTimeout);
+     if (this.state.translatePlayerY >= 90) return clearInterval(this.gravityTimeout);
      this.gravityTimeout = setInterval(() => {
        this.setState(
          {
-           translateY: this.state.translateY + 1,
+           translatePlayerY: this.state.translatePlayerY + 1,
          }
        )
      }, 1000)
@@ -33,10 +32,10 @@ class EntryApp extends Component {
 
   componentDidUpdate() {
     clearTimeout(this.gravityTimeout);
-    if (this.state.translateY >= 90) return;
+    if (this.state.translatePlayerY >= 90) return;
     this.gravityTimeout = setTimeout(() => {
       this.setState({
-        translateY: this.state.translateY + 0.8,
+        translatePlayerY: this.state.translatePlayerY + 0.8,
       })
     }, 15)
   }
@@ -44,7 +43,7 @@ class EntryApp extends Component {
   playerTap = () => {
     this.setState(
       {
-        translateY: this.state.translateY - 20,
+        translatePlayerY: this.state.translatePlayerY - 20,
       }
     )
   }
@@ -56,13 +55,16 @@ class EntryApp extends Component {
     return (
       <div className="App" style={{ position: 'relative', height: '100vh' }} onClick={this.playerTap}>
         <BackgroundCss>
-          <Player playerStyle={{
-            top: `${this.state.translateY}%`,
-            transform: 'translateY(-50%)',
-          }} />
+          <Player
+            ref={this.playerRef}
+            playerStyle={{
+              top: `${this.state.translatePlayerY}%`,
+              transform: 'translateY(-50%)',
+            }}
+          />
           <Fish />
-          <Fish fishType={'big'} />
-          <Fish fishType={'dart'} />
+          {/* <Fish fishType={'big'} />
+          <Fish fishType={'dart'} /> */}
         </BackgroundCss>
       </div>
     )

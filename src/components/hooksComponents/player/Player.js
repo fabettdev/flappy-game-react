@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import './player.css';
 // import Spritesheet from 'react-responsive-spritesheet';
 
@@ -9,7 +9,10 @@ function Player(props) {
         }
     )
 
+    const playerRef = useRef(null);
+
     useEffect(() => {
+        // console.log(playerRef.current.getBoundingClientRect())
         let newIndex = null;
         state.classIndex === 7 ? newIndex = 1 : newIndex = state.classIndex + 1;
         const timeout = setTimeout(() => {
@@ -23,7 +26,7 @@ function Player(props) {
     }, [state.classIndex]);
 
     return (
-        <div className={`player swim${state.classIndex}`} style={props.playerStyle}></div>
+        <div ref={playerRef} className={`player swim${state.classIndex}`} style={props.playerStyle}></div>
     )
 }
 

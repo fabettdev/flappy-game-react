@@ -1,33 +1,28 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import './fish.css';
 
-function Fish() {
+function Fish(props) {
     const [state, setState] = useState(
         {
             classIndex: 1,
-            translateX: 0,
         }
     )
 
-    const fishRef = useRef(null);
-
     useEffect(() => {
-        // console.log(fishRef.current.getBoundingClientRect())
         let newIndex = null;
         state.classIndex === 4 ? newIndex = 1 : newIndex = state.classIndex + 1;
         const timeout = setTimeout(() => {
             setState(
                 {
                     classIndex: newIndex,
-                    translateX: state.translateX + 2,
                 }
             )
-        }, 10)
+        }, 150)
         return () => clearTimeout(timeout);
-    }, [state]);
+    }, [state.classIndex]);
 
     return (
-        <div ref={fishRef} className={`fish ${state.classIndex}`} style={{ right: `${state.translateX}px` }}></div>
+        <div className={`fish ${props.fishType}${state.classIndex}`} style={props.fishStyle}></div>
     )
 }
 
