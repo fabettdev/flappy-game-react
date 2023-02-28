@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import background from '../assets/images/background.png';
-import middleground from '../assets/images/midground.png';
+import background from '../../assets/images/environment/background.png';
+import middleground from '../../assets/images/environment/midground.png';
 
 export default class Background extends Component {
     constructor(props) {

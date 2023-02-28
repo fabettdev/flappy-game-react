@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Player from '../components/hooksComponents/player/Player';
-import logo from '../assets/images/logo.svg';
 import '../assets/styles/common.css';
-import Background from '../components/Background';
+import Background from '../components/classComponents/Background';
 
 class EntryApp extends Component {
   constructor(props) {
