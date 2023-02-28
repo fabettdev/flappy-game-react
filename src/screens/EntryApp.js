@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Player from '../components/hooksComponents/player/Player';
 import '../assets/styles/common.css';
 import Background from '../components/classComponents/Background';
+import Fish from '../components/hooksComponents/fish/Fish';
 
 class EntryApp extends Component {
   constructor(props) {
@@ -57,6 +58,9 @@ class EntryApp extends Component {
           top: `${this.state.translateY}%`,
           transform: 'translateY(-50%)',
         }} />
+        <Fish />
+        <Fish fishType={'big'} />
+        <Fish fishType={'dart'} />
         <Background />
       </div>
     )
