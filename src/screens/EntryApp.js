@@ -55,14 +55,15 @@ class EntryApp extends Component {
   render() {
     return (
       <div className="App" style={{ position: 'relative', height: '100vh' }} onClick={this.playerTap}>
-        <BackgroundCss />
-        <Player playerStyle={{
-          top: `${this.state.translateY}%`,
-          transform: 'translateY(-50%)',
-        }} />
-        <Fish />
-        <Fish fishType={'big'} />
-        <Fish fishType={'dart'} />
+        <BackgroundCss>
+          <Player playerStyle={{
+            top: `${this.state.translateY}%`,
+            transform: 'translateY(-50%)',
+          }} />
+          <Fish />
+          <Fish fishType={'big'} />
+          <Fish fishType={'dart'} />
+        </BackgroundCss>
       </div>
     )
   }

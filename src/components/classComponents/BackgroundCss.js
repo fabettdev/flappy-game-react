@@ -1,10 +1,11 @@
 import React from 'react'
 
-function BackgroundCss() {
+function BackgroundCss(props) {
     return (
         <div className='background-container'>
             <div className='background-css'></div>
             <div className='midground-css'></div>
+            {props.children}
         </div>
     )
 }
