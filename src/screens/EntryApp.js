@@ -1,4 +1,4 @@
-import React, { Component, setState } from 'react';
+import React, { Component } from 'react';
 import Player from '../components/hooksComponents/player/Player';
 
 class EntryApp extends Component {
@@ -6,6 +6,7 @@ class EntryApp extends Component {
     super(props);
 
     this.gravityTimeout = null;
+    this.playerInterval = null;
 
     this.state = {
       translateY: 50,
@@ -15,22 +16,31 @@ class EntryApp extends Component {
   componentDidMount() {
   }
 
+  /*  componentDidUpdate() {
+     if (this.state.translateY >= 90) return clearInterval(this.gravityTimeout);
+     this.gravityTimeout = setInterval(() => {
+       this.setState(
+         {
+           translateY: this.state.translateY + 1,
+         }
+       )
+     }, 1000)
+   } */
+
   componentDidUpdate() {
-    if (this.state.translateY === 100) return () => clearTimeout(this.gravityTimeout);
+    clearTimeout(this.gravityTimeout);
+    if (this.state.translateY >= 90) return;
     this.gravityTimeout = setTimeout(() => {
-      this.setState(
-        {
-          translateY: this.state.translateY + 1,
-        }
-      )
+      this.setState({
+        translateY: this.state.translateY + 0.8,
+      })
     }, 15)
-    return () => clearTimeout(this.gravityTimeout);
   }
 
   playerTap = () => {
     this.setState(
       {
-        translateY: this.state.translateY - 30,
+        translateY: this.state.translateY - 20,
       }
     )
   }
@@ -42,13 +52,11 @@ class EntryApp extends Component {
     return (
       <div className="App" style={{ position: 'relative', height: '100vh' }} onClick={this.playerTap}>
         <Player playerStyle={{
-          position: 'absolute',
           top: `${this.state.translateY}%`,
-          left: '10%',
           transform: 'translateY(-50%)',
         }} />
       </div>
-    );
+    )
   }
 }
 

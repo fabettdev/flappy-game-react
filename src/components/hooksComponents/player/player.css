@@ -4,6 +4,9 @@
   height: 5rem;
   background-repeat: no-repeat;
   background-size: cover;
+  position: absolute;
+  left: 10%;
+  transform: "translateY(-50%)";
 }
 
 .player.swim1 {
