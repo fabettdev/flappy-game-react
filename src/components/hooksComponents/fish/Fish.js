@@ -11,7 +11,6 @@ function Fish(props) {
     )
 
     const fishRef = useRef(null);
-    let fishHitbox = null
     let isHit = false
 
     useEffect(() => {
