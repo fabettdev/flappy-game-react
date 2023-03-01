@@ -1,11 +1,13 @@
 .pillars-container {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  background-color: red;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.divider {
+  height: 20vh;
 }
 
 .enemy-pillar-top,
@@ -15,7 +17,7 @@
   justify-content: center;
 }
 
-.enemy-pillar-bottom {
+.enemy-pillar-top {
   background-color: red;
 }
 

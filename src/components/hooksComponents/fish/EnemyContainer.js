@@ -17,6 +17,7 @@ function EnemyContainer() {
                     <FishAutentico />
                 </div>
             </div>
+            <div className='divider'></div>
             <div className='enemy-pillar-bottom'>
                 <div className='enemy-container'>
                     <FishAutentico />
