@@ -1,0 +1,22 @@
+.tutorial {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 20rem;
+}
+
+.tutorial img {
+  width: 10rem;
+}
+
+.tutorial .label {
+  font-family: "NicoPups-Regular";
+  max-width: 20rem;
+  padding: 0.5rem 2rem;
+  background-color: black;
+  border: 3px solid #f59e0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

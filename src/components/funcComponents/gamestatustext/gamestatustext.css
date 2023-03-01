@@ -10,6 +10,14 @@
   color: #52f29e;
 }
 
+.game-status-text.red {
+  color: #f52223;
+}
+
+.game-status-text.white {
+  color: white;
+}
+
 .game-status-text.small {
   font-size: 30px;
 }
