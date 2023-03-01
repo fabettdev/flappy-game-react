@@ -7,10 +7,27 @@ function EnemyContainer() {
     return (
         <div className='pillars-container'>
             <div className='enemy-pillar-top'>
-                <FishAutentico />
-                <FishAutentico />
+                <div className='enemy-container'>
+                    <FishAutentico />
+                </div>
+                <div className='enemy-container'>
+                    <FishAutentico />
+                </div>
+                <div className='enemy-container'>
+                    <FishAutentico />
+                </div>
             </div>
-            <div className='enemy-pillar-bottom'></div>
+            <div className='enemy-pillar-bottom'>
+                <div className='enemy-container'>
+                    <FishAutentico />
+                </div>
+                <div className='enemy-container'>
+                    <FishAutentico />
+                </div>
+                <div className='enemy-container'>
+                    <FishAutentico />
+                </div>
+            </div>
         </div>
     )
 }

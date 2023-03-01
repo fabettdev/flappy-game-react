@@ -1,20 +1,28 @@
 .pillars-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: absolute;
-    top: 0;
-    bottom: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.enemy-pillar-top {
-    background-color: red;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
+.enemy-pillar-top,
+.enemy-pillar-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .enemy-pillar-bottom {
-    background-color: yellow;
+  background-color: red;
+}
+
+.enemy-pillar-bottom {
+  background-color: yellow;
+}
+
+.enemy-container {
+  padding: 1rem 0;
 }

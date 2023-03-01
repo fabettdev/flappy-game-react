@@ -66,7 +66,7 @@ function Fish(props) {
     }
 
     return (
-        <div ref={fishRef} className={`fish ${state.classIndex}`} style={{ right: `${state.translateX}px`, top: parseInt(props.spawnHeight) }}></div>
+        <div ref={fishRef} className={`fishDemo ${state.classIndex}`} style={{ right: `${state.translateX}px`, top: parseInt(props.spawnHeight) }}></div>
     )
 }
 
