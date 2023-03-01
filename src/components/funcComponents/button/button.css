@@ -1,5 +1,17 @@
 .button1 {
-    background-color: black;
+    background-color: #F59E0A;
+    color: #183543;
+    width: 100px;
+    height: 40px;
+    font-family: 'NicoPups-Regular';
+    src: local('NicoPups-Regular'), url(../../../assets/fonts/NicoPups-Regular.woff) format('woff');
+    font-size: 20px;
+    font-weight: 700;
+    border: outset #F59E0A;
+}
+
+.button2 {
+    background-color: #2C6B65;
     color: #F59E0A;
     width: 100px;
     height: 40px;
@@ -7,22 +19,13 @@
     src: local('NicoPups-Regular'), url(../../../assets/fonts/NicoPups-Regular.woff) format('woff');
     font-size: 20px;
     font-weight: 700;
-    border: outset;
+    border: outset #2C6B65;
 }
 
-.button2 {
-    background-color: black;
-    color: #52F29E;
-    width: 100px;
-    height: 40px;
-    font-family: 'NicoPups-Regular';
-    src: local('NicoPups-Regular'), url(../../../assets/fonts/NicoPups-Regular.woff) format('woff');
-    font-size: 20px;
-    font-weight: 700;
-    border: outset #52F29E;
+.button1:active {
+    border: inset #F59E0A;
 }
 
-.button1:active,
 .button2:active {
-    border: inset #52F29E;
+    border: inset #2C6B65;
 }

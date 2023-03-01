@@ -3,7 +3,7 @@
   font-family: "NicoBold-Regular";
   color: #f59e0a;
   text-align: center;
-  text-shadow: 5px 5px black;
+  text-shadow: 5px 5px #02003C;
 }
 
 .game-status-text.small {
@@ -12,4 +12,11 @@
 
 .game-status-text.big {
   font-size: 70px;
+}
+
+.game-status-text.sub {
+  color: #52F29E;
+  font-family: 'NicoPups-Regular';
+  font-size: 50px;
+  font-weight: bold;
 }

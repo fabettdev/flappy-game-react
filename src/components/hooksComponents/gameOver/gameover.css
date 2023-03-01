@@ -1,5 +1,15 @@
+@font-face {
+    font-family: "NicoBold-Regular";
+    src: url(../../../assets/fonts/NicoBold-Regular.woff) format("woff");
+}
+
+@font-face {
+    font-family: "NicoPups-Regular";
+    src: url(../../../assets/fonts/NicoPups-Regular.woff) format("woff");
+}
+
 .gameover-container {
-    background-color: black;
+    background-color: #13283C;
     width: 500px;
     height: 500px;
     border: 5px solid #F59E0A;
@@ -7,4 +17,18 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 20px;
+}
+
+.gameover-field {
+    color: #F59E0A;
+    border-color: #F59E0A;
+    font-family: 'NicoPups-Regular';
+    font-size: 30px;
+    padding: 70px;
+    font-weight: bold;
+}
+
+.gameover-field-legend {
+    text-align: center;
 }
