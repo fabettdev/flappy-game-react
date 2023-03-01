@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Home from '../screens/Home'
 import Splash from '../screens/Splash'
 import Game from '../screens/Game'
 import NotFound from '../screens/NotFound'

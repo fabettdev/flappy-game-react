@@ -56,24 +56,21 @@ class Game extends Component {
   }
 
   render() {
-    const variable = 2
     return (
-      <div className="App" style={{ position: 'relative', height: '100vh' }} onClick={this.playerTap}>
-        <BackgroundCss>
-          <Player
-            ref={this.playerRef}
-            playerStyle={{
-              top: `${this.state.translatePlayerY}%`,
-              transform: 'translateY(-50%)',
-            }}
-          />
-          <Fish
-            spawnHeight='400'
-          />
-          {/* <Fish fishType={'big'} />
+      <BackgroundCss>
+        <Player
+          ref={this.playerRef}
+          playerStyle={{
+            top: `${this.state.translatePlayerY}%`,
+            transform: 'translateY(-50%)',
+          }}
+        />
+        <Fish
+          spawnHeight='400'
+        />
+        {/* <Fish fishType={'big'} />
           <Fish fishType={'dart'} /> */}
-        </BackgroundCss>
-      </div>
+      </BackgroundCss>
     )
   }
 }
