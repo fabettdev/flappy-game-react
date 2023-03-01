@@ -49,3 +49,9 @@ code {
   height: 100%;
   margin: 0;
 }
+
+/* UTILS */
+
+.text-center {
+  text-align: center;
+}
