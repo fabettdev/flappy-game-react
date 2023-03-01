@@ -1,10 +1,9 @@
 # TODOLIST
 
-- Spawn
-- Punti aggiunti
-- Grafica pre-partita tutorial
-- Box score attuale/migliore con local storage
 - Inizio partita stato
 - Fine partita stato
+- Spawn
+- Punti aggiunti
+- Local storage
 - Musica
 - Effetti

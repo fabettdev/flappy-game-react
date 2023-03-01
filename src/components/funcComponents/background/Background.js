@@ -9,7 +9,7 @@ function Background(props) {
     }
 
     return (
-        <div className="App" style={{ position: 'relative', height: '100vh' }} onClick={onClickPlayerMove}>
+        <div className="App" style={{ position: 'relative', height: '100vh' }} onMouseDown={onClickPlayerMove}>
             <div className='background-container'>
                 <div className='background-css'></div>
                 <div className='midground-css'></div>

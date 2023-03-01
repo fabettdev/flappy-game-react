@@ -3,8 +3,7 @@ import './player.css';
 import eventsBus from "../../../utils/eventBus";
 // import Spritesheet from 'react-responsive-spritesheet';
 
-function Player(props) {
-    let interval = null;
+function Player() {
     let timeout = null;
     const playerRef = useRef(null);
 
@@ -14,7 +13,6 @@ function Player(props) {
             translatePlayerY: 50,
         }
     )
-
 
     useEffect(() => {
         eventsBus.on('onClickPlayer', playerUp);
@@ -31,7 +29,10 @@ function Player(props) {
                 }
             ))
         }, 70)
-        return () => clearInterval(timeout);
+        return () => {
+            eventsBus.remove('onClickPlayer', playerUp);
+            clearInterval(timeout);
+        }
     }, [state.classIndex]);
 
     function playerUp() {

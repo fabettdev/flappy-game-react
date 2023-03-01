@@ -12,7 +12,7 @@
   background-image: url(../../../assets/images/environment/background.png);
   background-size: cover;
   background-repeat: repeat-x;
-  animation: parallax 20s linear infinite;
+  animation: parallax 3000s linear infinite;
 }
 
 .midground-css {
@@ -22,7 +22,7 @@
   background-image: url(../../../assets/images/environment/midground.png);
   background-size: cover;
   background-repeat: repeat-x;
-  animation: parallax 10s linear infinite;
+  animation: parallax 2000s linear infinite;
 }
 
 @keyframes parallax {
@@ -31,6 +31,6 @@
   }
 
   to {
-    background-position-x: -5000px;
+    background-position-x: -500000px;
   }
 }
