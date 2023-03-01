@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Player from '../components/hooksComponents/player/Player';
-import '../assets/styles/common.css';
-import BackgroundCss from '../components/classComponents/BackgroundCss';
-import Fish from '../components/hooksComponents/fish/Fish';
+import '../../assets/styles/common.css';
+import Player from '../../components/hooksComponents/player/Player';
+import Fish from '../../components/hooksComponents/fish/Fish';
+import Background from '../../components/funcComponents/background/Background';
 
 class Game extends Component {
   constructor(props) {
@@ -25,12 +25,12 @@ class Game extends Component {
 
   render() {
     return (
-      <BackgroundCss>
+      <Background>
         <Player />
         <Fish
           spawnHeight='400'
         />
-      </BackgroundCss>
+      </Background>
     )
   }
 }

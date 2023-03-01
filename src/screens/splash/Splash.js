@@ -1,15 +1,17 @@
 import React from 'react'
-import BackgroundCss from '../components/classComponents/BackgroundCss'
-import Button from '../components/hooksComponents/button/Button'
+import './splash.css';
+import Background from '../../components/funcComponents/background/Background';
+import Button from '../../components/funcComponents/button/Button'
+import GameStatusText from '../../components/funcComponents/gamestatustext/GameStatusText'
 
 function Splash() {
     return (
         <div>
-            <BackgroundCss>
+            <Background>
                 <div className='splash-container'>
                     <div className='title-container'>
-                        <p className='splash-title'>FLAPPY SUB</p>
-                        <p className='splash-subtitle'>---SUBTITLE---</p>
+                        <GameStatusText label={'flappy sub'} />
+                        <GameStatusText label={'---subtitle---'} size={'small'} />
                     </div>
                     <div className='button-container'>
                         <Button
@@ -24,7 +26,7 @@ function Splash() {
                         />
                     </div>
                 </div>
-            </BackgroundCss>
+            </Background>
         </div>
     )
 }

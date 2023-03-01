@@ -1,7 +1,8 @@
-import React from 'react'
-import eventsBus from "../../utils/eventBus";
+import React from 'react';
+import './background.css';
+import eventsBus from "../../../utils/eventBus";
 
-function BackgroundCss(props) {
+function Background(props) {
 
     function onClickPlayerMove() {
         eventsBus.dispatch('onClickPlayer');
@@ -18,4 +19,4 @@ function BackgroundCss(props) {
     )
 }
 
-export default BackgroundCss
+export default Background
