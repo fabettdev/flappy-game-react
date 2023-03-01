@@ -10,22 +10,6 @@
   gap: 20px;
 }
 
-.splash-title {
-  font-family: "NicoBold-Regular";
-  font-size: 50px;
-  color: #f59e0a;
-  text-align: center;
-  text-shadow: 5px 5px black;
-}
-
-.splash-subtitle {
-  font-family: "NicoPups-Regular";
-  color: #52f29e;
-  font-size: 30px;
-  text-align: center;
-  font-weight: bold;
-}
-
 .button-container {
   display: flex;
   justify-content: center;

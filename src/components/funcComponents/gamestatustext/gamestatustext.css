@@ -6,6 +6,10 @@
   text-shadow: 5px 5px black;
 }
 
+.game-status-text.green {
+  color: #52f29e;
+}
+
 .game-status-text.small {
   font-size: 30px;
 }
