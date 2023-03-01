@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "NicoBold-Regular";
+  src: url(../fonts/NicoBold-Regular.woff) format("woff");
+}
+
+@font-face {
+  font-family: "NicoPups-Regular";
+  src: url(../fonts/NicoPups-Regular.woff) format("woff");
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -85,18 +95,16 @@ code {
 }
 
 .splash-title {
-  font-family: 'NicoBold-Regular';
-  src: local('NicoBold-Regular'), url(../fonts/NicoBold-Regular.woff) format('woff');
+  font-family: "NicoBold-Regular";
   font-size: 50px;
-  color: #F59E0A;
+  color: #f59e0a;
   text-align: center;
   text-shadow: 5px 5px black;
 }
 
 .splash-subtitle {
-  font-family: 'NicoPups-Regular';
-  src: local('NicoPups-Regular'), url(../fonts/NicoPups-Regular.woff) format('woff');
-  color: #52F29E;
+  font-family: "NicoPups-Regular";
+  color: #52f29e;
   font-size: 30px;
   text-align: center;
   font-weight: bold;

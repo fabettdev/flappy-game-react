@@ -17,6 +17,7 @@ function Player(props) {
 
 
     useEffect(() => {
+        eventsBus.on('onClickPlayer', playerUp);
         eventsBus.dispatch('onSwim', playerRef.current.getBoundingClientRect())
         // console.log(playerRef.current.getBoundingClientRect())
         let newIndex = null;
@@ -33,16 +34,14 @@ function Player(props) {
         return () => clearInterval(timeout);
     }, [state.classIndex]);
 
-    useEffect(() => {
-        eventsBus.on('onClickPlayer', () => {
-            setState(prevState => (
-                {
-                    ...state,
-                    translatePlayerY: prevState.translatePlayerY - 40,
-                }
-            ))
-        });
-    })
+    function playerUp() {
+        setState(prevState => (
+            {
+                ...state,
+                translatePlayerY: prevState.translatePlayerY - 40,
+            }
+        ))
+    }
 
     return (
         <div ref={playerRef} className={`player swim${state.classIndex}`} style={{
