@@ -17,14 +17,6 @@
   justify-content: center;
 }
 
-.enemy-pillar-top {
-  background-color: red;
-}
-
-.enemy-pillar-bottom {
-  background-color: yellow;
-}
-
 .enemy-container {
-  padding: 1rem 0;
+  padding: 1vh 0;
 }
