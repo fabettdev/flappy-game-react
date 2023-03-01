@@ -4,7 +4,7 @@ import '../assets/styles/common.css';
 import BackgroundCss from '../components/classComponents/BackgroundCss';
 import Fish from '../components/hooksComponents/fish/Fish';
 
-class EntryApp extends Component {
+class Game extends Component {
   constructor(props) {
     super(props);
 
@@ -78,4 +78,4 @@ class EntryApp extends Component {
   }
 }
 
-export default EntryApp;
+export default Game;
