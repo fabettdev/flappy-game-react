@@ -3,6 +3,7 @@ import '../../assets/styles/common.css';
 import Player from '../../components/hooksComponents/player/Player';
 import Fish from '../../components/hooksComponents/fish/Fish';
 import Background from '../../components/funcComponents/background/Background';
+import EnemyContainer from '../../components/hooksComponents/fish/EnemyContainer';
 
 class Game extends Component {
   constructor(props) {
@@ -27,9 +28,7 @@ class Game extends Component {
     return (
       <Background>
         <Player />
-        <Fish
-          spawnHeight='400'
-        />
+        <EnemyContainer />
       </Background>
     )
   }
