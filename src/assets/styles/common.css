@@ -72,6 +72,50 @@ code {
   animation: parallax 10s linear infinite;
 }
 
+.splash-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  gap: 20px;
+}
+
+.splash-title {
+  font-family: 'NicoBold-Regular';
+  src: local('NicoBold-Regular'), url(../fonts/NicoBold-Regular.woff) format('woff');
+  font-size: 50px;
+  color: #F59E0A;
+  text-align: center;
+  text-shadow: 5px 5px black;
+}
+
+.splash-subtitle {
+  font-family: 'NicoPups-Regular';
+  src: local('NicoPups-Regular'), url(../fonts/NicoPups-Regular.woff) format('woff');
+  color: #52F29E;
+  font-size: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 @keyframes parallax {
   from {
     background-position-x: 0px;
