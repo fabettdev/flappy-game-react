@@ -1,11 +1,11 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Splash from '../screens/Splash'
-import Game from '../screens/Game'
-import NotFound from '../screens/NotFound'
 import Test from '../screens/Test'
+import Splash from '../screens/splash/Splash'
+import Game from '../screens/game/Game'
+import NotFound from '../screens/notfound/NotFound'
 
-function Routing(props) {
+function Routing() {
     return (
         <Routes>
             <Route path='/' element={<Splash />} />

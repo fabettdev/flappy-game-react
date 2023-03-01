@@ -1,0 +1,15 @@
+.game-status-text {
+  font-size: 50px;
+  font-family: "NicoBold-Regular";
+  color: #f59e0a;
+  text-align: center;
+  text-shadow: 5px 5px black;
+}
+
+.game-status-text.small {
+  font-size: 30px;
+}
+
+.game-status-text.big {
+  font-size: 70px;
+}
