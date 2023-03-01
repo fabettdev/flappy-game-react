@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import './fish.css';
+import './fishAut.css';
 
-function Fish(props) {
+function FishAutentico(props) {
     const [state, setState] = useState(
         {
             classIndex: 1,
@@ -26,8 +26,8 @@ function Fish(props) {
     )
 }
 
-Fish.defaultProps = {
+FishAutentico.defaultProps = {
     fishType: 'default',
 }
 
-export default Fish;
+export default FishAutentico;
