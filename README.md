@@ -1,9 +1,8 @@
 # TODOLIST
 
-- Modificare gestione posizione
-- Modifichiamo componente container in comp di classe
-- Aggiungere controllo di destra
 - Spawn
+- Se non traccia hitbox su tutti componenti, modifichiamo componente container in comp di classe
+- Smussare angoli div container
 - Punti aggiunti
 - Inizio partita stato
 - Fine partita stato

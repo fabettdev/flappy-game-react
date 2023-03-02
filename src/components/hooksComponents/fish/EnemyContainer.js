@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './fish.css'
-import FishAutentico from './FishAutentico'
+import Fish from './Fish'
 import './enemycontainer.css'
+import eventsBus from '../../../utils/eventBus'
 
 // Massimo 9 pesci
 // Stato pesci sopra
@@ -11,6 +12,11 @@ import './enemycontainer.css'
 
 function EnemyContainer() {
 
+    const divsPosition = {};
+    const topDivRef = useRef(null);
+    const bottomDivRef = useRef(null);
+    let interval = null;
+
     const [state, setState] = useState({
         maxFishes: 9,
         upperFishes: [],
@@ -19,17 +25,18 @@ function EnemyContainer() {
     })
 
     useEffect(() => {
+        // useEffect per generare il pillar con i pesci
         const upperFishes = [];
         const lowerFishes = [];
         const upperNum = Math.floor(Math.random() * 9 + 1);
         const lowerNum = Math.floor(Math.random() * (state.maxFishes - upperNum + 1));
         console.log(upperNum, lowerNum)
         for (let i = 0; i < upperNum; i++) {
-            const fish = <div key={`${i}-${Math.random()}`} className='enemy-container'><FishAutentico /></div>;
+            const fish = <div key={`${i}-${Math.random()}`} className='enemy-container'><Fish /></div>;
             upperFishes.push(fish);
         }
         for (let i = 0; i < lowerNum; i++) {
-            const fish = <div key={`${i}-${Math.random()}`} className='enemy-container'><FishAutentico /></div>;
+            const fish = <div key={`${i}-${Math.random()}`} className='enemy-container'><Fish /></div>;
             lowerFishes.push(fish);
         }
         setState({
@@ -40,7 +47,13 @@ function EnemyContainer() {
     }, [])
 
     useEffect(() => {
-        const timeout = setTimeout(() => {
+        // Invio posizione dei div al player tramite evento
+        divsPosition.topDiv = topDivRef.current.getBoundingClientRect();
+        divsPosition.bottomDiv = bottomDivRef.current.getBoundingClientRect();
+        eventsBus.dispatch('onSwim', divsPosition);
+
+        // Intervallo per muovere il div
+        interval = setInterval(() => {
             setState(
                 {
                     ...state,
@@ -48,15 +61,15 @@ function EnemyContainer() {
                 }
             )
         }, 10)
-        return () => clearTimeout(timeout);
+        return () => clearInterval(interval);
     }, [state]);
 
     return (
         <div className='pillars-container' style={{ right: `${state.translateX}px` }}>
-            <div className='enemy-pillar-top'>
+            <div ref={topDivRef} className='enemy-pillar-top'>
                 {state.upperFishes.map(fish => fish)}
             </div>
-            <div className='enemy-pillar-bottom'>
+            <div ref={bottomDivRef} className='enemy-pillar-bottom'>
                 {state.lowerFishes.map(fish => fish)}
             </div>
         </div>
