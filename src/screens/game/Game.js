@@ -81,7 +81,7 @@ class Game extends Component {
   }
 
   pushEnemy = () => {
-    this.enemyArr.push(<EnemyContainer key={Math.random()} scoreFunction={this.scoreIncrease} />)
+    this.enemyArr.push(<EnemyContainer key={Math.random()} scoreFunction={this.scoreIncrease} gameOver={this.state.gameOver} />)
   }
 
   renderMap(item) {

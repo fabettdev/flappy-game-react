@@ -70,7 +70,9 @@ function EnemyContainer(props) {
     }, [state]);
 
     function positionCheck(playerHitbox) {
-        if (divsPosition.topDiv.right < playerHitbox && !props.gameOver) {
+        const topDiv = topDivRef.current.getBoundingClientRect();
+        console.log(topDiv.right)
+        if (topDiv.right < playerHitbox && !props.gameOver) {
             props.scoreFunction()
         }
     }
