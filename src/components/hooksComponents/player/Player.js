@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import './player.css';
 import eventsBus from "../../../utils/eventBus";
+import { jumpEffect } from "../../../utils/audioUtils";
+
 // import Spritesheet from 'react-responsive-spritesheet';
 
 function Player() {
@@ -42,6 +44,7 @@ function Player() {
                 translatePlayerY: prevState.translatePlayerY - 40,
             }
         ))
+        jumpEffect()
     }
 
     return (
