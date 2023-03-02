@@ -23,7 +23,7 @@ function Splash() {
                     <Tutorial />
                     <div className='title-container'>
                         <GameStatusText label={'flappy sub'} />
-                        <GameStatusText label={'---subtitle---'} size={'sub'} />
+                        <GameStatusText label={'---React.js---'} size={'sub'} />
                     </div>
                     <div className='button-container'>
                         <Button
