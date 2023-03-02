@@ -47,7 +47,7 @@ function Player(props) {
         setState(prevState => (
             {
                 ...state,
-                translatePlayerY: prevState.translatePlayerY - 40,
+                translatePlayerY: prevState.translatePlayerY - 25,
             }
         ))
         jumpEffect()

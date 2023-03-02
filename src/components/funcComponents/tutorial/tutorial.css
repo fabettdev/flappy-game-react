@@ -4,6 +4,11 @@
   justify-content: space-between;
   align-items: center;
   height: 20rem;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .tutorial img {
@@ -14,7 +19,7 @@
   font-family: "NicoPups-Regular";
   max-width: 20rem;
   padding: 0.5rem 2rem;
-  background-color: black;
+  background-color: #13283C;
   border: 3px solid #f59e0a;
   display: flex;
   align-items: center;

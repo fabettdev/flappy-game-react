@@ -1,7 +1,7 @@
 .player {
   display: inline-block;
-  width: 10rem;
-  height: 5rem;
+  width: 10vh;
+  height: 5vh;
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
