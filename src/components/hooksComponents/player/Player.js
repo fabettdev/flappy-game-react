@@ -88,6 +88,10 @@ function Player(props) {
         if ((horizontalHit && verticalHitBottom) || (horizontalHit && verticalHitTop) || borderHit) {
             props.gameOverFunc();
         }
+
+        if (topDivRight < playerLeft && !props.gameOver) {
+            props.scoreFunction()
+        }
     }
 
     return (

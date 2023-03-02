@@ -7,6 +7,8 @@ import EnemyContainer from '../../components/hooksComponents/fish/EnemyContainer
 import { gameStart } from '../../utils/audioUtils';
 import Tutorial from '../../components/funcComponents/tutorial/Tutorial';
 import GameOver from '../../components/hooksComponents/gameOver/GameOver'
+import GameStatusText from '../../components/funcComponents/gamestatustext/GameStatusText';
+import './game.css'
 
 class Game extends Component {
   constructor(props) {
@@ -16,7 +18,8 @@ class Game extends Component {
       hasStarted: false,
       gameOver: false,
       enemyList: [],
-      seconds: 4000
+      seconds: 4000,
+      score: 0
     }
 
     this.enemyArr = []
@@ -56,6 +59,12 @@ class Game extends Component {
     )
   }
 
+  scoreIncrease = () => {
+    this.setState({
+      score: this.state.score + 1,
+    })
+  }
+
   gameOver = () => {
     this.setState(
       {
@@ -87,13 +96,18 @@ class Game extends Component {
   render() {
     return (
       <Background>
-        <Player hasStarted={this.state.hasStarted} startFunc={this.startGame} gameOverFunc={this.gameOver} />
+        <Player hasStarted={this.state.hasStarted} startFunc={this.startGame} gameOverFunc={this.gameOver} gameOver={this.state.gameOver} scoreFunction={this.scoreIncrease} />
         {!this.state.hasStarted && !this.state.gameOver && <Tutorial />}
         {this.state.gameOver &&
           <GameOver />}
         {
           this.enemyArr.map(this.renderMap)
         }
+        <div className='score-container'>
+          <GameStatusText
+            label={this.state.score.toString()}
+          />
+        </div>
       </Background >
     )
   }
