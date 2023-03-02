@@ -74,12 +74,16 @@ function EnemyContainer(props) {
 
     function positionCheck(playerHitbox) {
         let passedCheck = false
-        let topDiv = topDivRef.current.getBoundingClientRect();
-        //console.log(topDiv.right)
-        if (!state.isPassed && topDiv.right < playerHitbox && !props.gameOver) {
-            props.scoreFunction()
-            passedCheck = true
-            console.log(passedCheck)
+
+        if (topDivRef.current !== null) {
+            let topDiv = topDivRef.current.getBoundingClientRect();
+            //console.log(topDiv.right)
+
+            if (!state.isPassed && topDiv.right < playerHitbox && !props.gameOver) {
+                props.scoreFunction()
+                passedCheck = true
+                console.log(passedCheck)
+            }
         }
         setState({
             ...state,
