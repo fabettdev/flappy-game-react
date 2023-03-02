@@ -17,6 +17,15 @@
   justify-content: center;
 }
 
-.enemy-container {
-  padding: 1vh 0;
+.enemy-pillar-top .fish,
+.enemy-pillar-bottom .fish {
+  margin-bottom: 1.5vh;
+}
+
+.enemy-pillar-top .fish:first-child {
+  margin-top: 1.5vh;
+}
+
+.enemy-pillar-top .fish:last-child {
+  margin-bottom: 0;
 }

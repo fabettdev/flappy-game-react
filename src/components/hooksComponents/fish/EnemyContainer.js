@@ -32,11 +32,11 @@ function EnemyContainer() {
         const lowerNum = Math.floor(Math.random() * (state.maxFishes - upperNum + 1));
         console.log(upperNum, lowerNum)
         for (let i = 0; i < upperNum; i++) {
-            const fish = <div key={`${i}-${Math.random()}`} className='enemy-container'><Fish /></div>;
+            const fish = <Fish key={`${i}-${Math.random()}`} />;
             upperFishes.push(fish);
         }
         for (let i = 0; i < lowerNum; i++) {
-            const fish = <div key={`${i}-${Math.random()}`} className='enemy-container'><Fish /></div>;
+            const fish = <Fish key={`${i}-${Math.random()}`} />;
             lowerFishes.push(fish);
         }
         setState({
