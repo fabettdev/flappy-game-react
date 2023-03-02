@@ -14,14 +14,25 @@ class Game extends Component {
     this.state = {
       hasStarted: false,
       gameOver: false,
+      enemyList: [],
     }
+
+    this.enemyArr = []
+    this.interval = null
   }
 
   componentDidMount() {
     gameStart()
+    this.interval = setInterval(() => {
+      this.checkEnemyArr()
+      this.pushEnemy()
+      this.setState({ enemyList: this.enemyArr })
+      console.log(this.enemyArr)
+    }, 2000)
   }
 
   componentDidUpdate() {
+
   }
 
   spawnRand = () => {
@@ -44,17 +55,34 @@ class Game extends Component {
       }
     )
   }
+  checkEnemyArr() {
+    if (this.enemyArr.length === 10) {
+      this.enemyArr.shift()
+    }
+  }
+
+  pushEnemy = () => {
+    this.enemyArr.push(<EnemyContainer />)
+  }
+
+  renderMap(item) {
+    return item
+  }
 
   componentWillUnmount() {
+    clearInterval(this.interval)
+    this.enemyArr = []
   }
 
   render() {
     return (
       <Background>
         <Player hasStarted={this.state.hasStarted} startFunc={this.startGame} gameOverFunc={this.gameOver} />
-        <EnemyContainer />
         {!this.state.hasStarted && !this.state.gameOver && <Tutorial />}
-      </Background>
+        {
+          this.enemyArr.map(this.renderMap)
+        }
+      </Background >
     )
   }
 }
