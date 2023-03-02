@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './splash.css';
 import Background from '../../components/funcComponents/background/Background';
-import Button from '../../components/funcComponents/button/Button';
 import GameStatusText from '../../components/funcComponents/gamestatustext/GameStatusText';
-import Tutorial from '../../components/funcComponents/tutorial/Tutorial';
 import { audioStart, audioStop } from '../../utils/audioUtils';
 
 function Splash() {
@@ -25,17 +24,12 @@ function Splash() {
                         <GameStatusText label={'---React.js---'} size={'sub'} />
                     </div>
                     <div className='button-container'>
-                        <Button
-                            buttonLabel='PLAY'
-                            buttonStyle='button1'
-                            buttonPlaceholder='PLAY'
-                            buttonLink='/game'
-                        />
-                        <Button
-                            buttonLabel='CREDITS'
-                            buttonStyle='button2'
-                            callback={audioStart}
-                        />
+                        <Link
+                            className='button1'
+                            to={'/game'}
+                        >
+                            PLAY
+                        </Link>
                     </div>
                 </div>
             </Background>

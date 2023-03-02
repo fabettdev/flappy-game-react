@@ -21,6 +21,7 @@ function Player(props) {
         let newIndex = null;
         state.classIndex === 7 ? newIndex = 1 : newIndex = state.classIndex + 1;
         timeout = setInterval(() => {
+
             setState(prevState => (
                 {
                     ...state,

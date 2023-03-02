@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './gameover.css'
 import '../../../assets/styles/common.css'
 import '../../../screens/splash/splash.css'
 import GameStatusText from '../../funcComponents/gamestatustext/GameStatusText'
-import Button from '../../funcComponents/button/Button'
+import Button from '../../funcComponents/button/Button';
 
 function GameOver(props) {
     return (
@@ -21,13 +22,14 @@ function GameOver(props) {
                 <Button
                     buttonLabel='REPLAY'
                     buttonStyle='button1'
-                    buttonPlaceholder='PLAY'
-                    buttonLink='/game'
+                    callback={props.replayFunc}
                 />
-                <Button
-                    buttonLabel='HOME'
-                    buttonStyle='button2'
-                />
+                <Link
+                    className='button2'
+                    to={'/'}
+                >
+                    HOME
+                </Link>
             </div>
         </div>
     )

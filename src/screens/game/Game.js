@@ -18,32 +18,27 @@ class Game extends Component {
       hasStarted: false,
       gameOver: false,
       enemyList: [],
-      seconds: 4000,
       score: 0
     }
 
-    this.enemyArr = []
     this.interval = null
-    this.seconds = this.getRandomArbitrary(1000, 4000)
   }
 
   componentDidMount() {
     gameStart()
-    clearInterval(this.interval)
     this.interval = setInterval(() => {
-      this.checkEnemyArr()
-      this.pushEnemy()
-      this.setState({ enemyList: this.enemyArr, seconds: this.getRandomArbitrary(1000, 4000) })
-      console.log(this.enemyArr)
+      if (!this.state.hasStarted || this.state.gameOver) return;
+      const enemyArr = [...this.state.enemyList];
+      this.checkEnemyArr(enemyArr);
+      this.pushEnemy(enemyArr);
+      this.setState({ enemyList: enemyArr })
     }, 4000)
   }
 
   componentDidUpdate() {
-
   }
 
   spawnRand = () => {
-
   }
 
   getRandomArbitrary(min, max) {
@@ -72,16 +67,25 @@ class Game extends Component {
         gameOver: true,
       }
     )
-    //clearInterval(this.interval)
   }
-  checkEnemyArr = () => {
-    if (this.enemyArr.length >= 10) {
-      this.enemyArr.shift()
+
+  replay = () => {
+    this.setState({
+      hasStarted: false,
+      gameOver: false,
+      enemyList: [],
+      score: 0
+    })
+  }
+
+  checkEnemyArr(array) {
+    if (array.length > 5) {
+      array.shift()
     }
   }
 
-  pushEnemy = () => {
-    this.enemyArr.push(<EnemyContainer key={Math.random()} scoreFunction={this.scoreIncrease} gameOver={this.state.gameOver} />)
+  pushEnemy(array) {
+    array.push(<EnemyContainer key={Math.random()} scoreFunction={this.scoreIncrease} gameOver={this.state.gameOver} />)
   }
 
   renderMap(item) {
@@ -89,19 +93,19 @@ class Game extends Component {
   }
 
   componentWillUnmount() {
-    console.log('smontato')
-    this.enemyArr = []
   }
 
   render() {
     return (
-      <Background>
+      <Background stopAnimation={this.state.gameOver}>
         <Player hasStarted={this.state.hasStarted} startFunc={this.startGame} gameOverFunc={this.gameOver} gameOver={this.state.gameOver} scoreFunction={this.scoreIncrease} />
         {!this.state.hasStarted && !this.state.gameOver && <Tutorial />}
-        {this.state.gameOver &&
-          <GameOver />}
         {
-          this.enemyArr.map(this.renderMap)
+          this.state.gameOver &&
+          <GameOver replayFunc={this.replay} />
+        }
+        {
+          this.state.enemyList.map(this.renderMap)
         }
         <div className='score-container'>
           <GameStatusText
