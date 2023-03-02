@@ -20,7 +20,6 @@ function Splash() {
         <div>
             <Background>
                 <div className='splash-container'>
-                    <Tutorial />
                     <div className='title-container'>
                         <GameStatusText label={'flappy sub'} />
                         <GameStatusText label={'---subtitle---'} size={'sub'} />

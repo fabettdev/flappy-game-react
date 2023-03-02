@@ -5,7 +5,7 @@ import { jumpEffect } from "../../../utils/audioUtils";
 
 // import Spritesheet from 'react-responsive-spritesheet';
 
-function Player() {
+function Player(props) {
     let timeout = null;
     const playerRef = useRef(null);
 
@@ -17,8 +17,6 @@ function Player() {
     )
 
     useEffect(() => {
-        eventsBus.on('onSwim', hitCheck)
-        eventsBus.on('onClickPlayer', playerUp);
         let newIndex = null;
         state.classIndex === 7 ? newIndex = 1 : newIndex = state.classIndex + 1;
         timeout = setInterval(() => {
@@ -26,18 +24,26 @@ function Player() {
                 {
                     ...state,
                     classIndex: newIndex,
-                    translatePlayerY: prevState.translatePlayerY + 5,
+                    translatePlayerY: props.hasStarted ? prevState.translatePlayerY + 5 : state.translatePlayerY,
                 }
             ))
         }, 70)
+
+        return () => clearInterval(timeout);
+    }, [state.classIndex]);
+
+    useEffect(() => {
+        eventsBus.on('onSwim', hitCheck)
+        eventsBus.on('onClickPlayer', playerUp);
         return () => {
             eventsBus.remove('onClickPlayer', playerUp);
             eventsBus.remove('onSwim', hitCheck);
-            clearInterval(timeout);
         }
-    }, [state.classIndex]);
+    }, [state]);
 
     function playerUp() {
+        if (!props.hasStarted) props.startFunc();
+
         setState(prevState => (
             {
                 ...state,
@@ -56,7 +62,6 @@ function Player() {
         let verticalHitBottom = false
         let horizontalHit = false
         let borderHit = false
-        let isHit = false
 
         // Controllo player esce dai bordi
         if (playerTop <= 0 || playerBottom > window.innerHeight) {
@@ -80,12 +85,8 @@ function Player() {
             verticalHitBottom = true
         }
 
-        if ((horizontalHit && verticalHitBottom) || (horizontalHit && verticalHitTop)) {
-            isHit = true
-            console.log('colpito')
-        } else if (borderHit) {
-            isHit = true
-            console.log('uscito dai bordi')
+        if ((horizontalHit && verticalHitBottom) || (horizontalHit && verticalHitTop) || borderHit) {
+            props.gameOverFunc();
         }
     }
 
