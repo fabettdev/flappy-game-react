@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './splash.css';
 import Background from '../../components/funcComponents/background/Background';
 import Button from '../../components/funcComponents/button/Button';
 import GameStatusText from '../../components/funcComponents/gamestatustext/GameStatusText';
 import Tutorial from '../../components/funcComponents/tutorial/Tutorial';
+import { audioStart, audioStop } from '../../utils/audioUtils';
 
 function Splash() {
+
+    useEffect(() => {
+        audioStart()
+        console.log('start')
+        return () => {
+            audioStop()
+        }
+    }, [])
+
     return (
         <div>
             <Background>
@@ -25,6 +35,7 @@ function Splash() {
                         <Button
                             buttonLabel='CREDITS'
                             buttonStyle='button2'
+                            callback={audioStart}
                         />
                     </div>
                 </div>
