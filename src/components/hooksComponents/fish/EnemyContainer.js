@@ -22,6 +22,7 @@ function EnemyContainer(props) {
         upperFishes: [],
         lowerFishes: [],
         translateX: -100,
+        isPassed: false,
     })
 
     useEffect(() => {
@@ -52,8 +53,6 @@ function EnemyContainer(props) {
         divsPosition.bottomDiv = bottomDivRef.current.getBoundingClientRect();
         eventsBus.dispatch('onSwim', divsPosition);
 
-        eventsBus.on('onPlayerMove', positionCheck)
-
         // Intervallo per muovere il div
         interval = setInterval(() => {
             setState(
@@ -69,12 +68,23 @@ function EnemyContainer(props) {
         };
     }, [state]);
 
+    useEffect(() => {
+        eventsBus.on('onPlayerMove', positionCheck)
+    }, [state])
+
     function positionCheck(playerHitbox) {
-        const topDiv = topDivRef.current.getBoundingClientRect();
-        console.log(topDiv.right)
-        if (topDiv.right < playerHitbox && !props.gameOver) {
+        let passedCheck = false
+        let topDiv = topDivRef.current.getBoundingClientRect();
+        //console.log(topDiv.right)
+        if (!state.isPassed && topDiv.right < playerHitbox && !props.gameOver) {
             props.scoreFunction()
+            passedCheck = true
+            console.log(passedCheck)
         }
+        setState({
+            ...state,
+            isPassed: passedCheck,
+        })
     }
 
     return (
