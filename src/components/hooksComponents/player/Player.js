@@ -8,6 +8,7 @@ import { jumpEffect } from "../../../utils/audioUtils";
 function Player(props) {
     let timeout = null;
     const playerRef = useRef(null);
+    const playerPosition = null
 
     const [state, setState] = useState(
         {
@@ -33,6 +34,9 @@ function Player(props) {
     }, [state.classIndex]);
 
     useEffect(() => {
+        playerPosition = playerRef.current.getBoundingClientRect();
+        eventsBus.dispatch('onPlayerMove', playerPosition)
+
         eventsBus.on('onSwim', hitCheck)
         eventsBus.on('onClickPlayer', playerUp);
         return () => {
