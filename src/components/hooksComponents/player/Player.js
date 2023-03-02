@@ -8,7 +8,7 @@ import { jumpEffect } from "../../../utils/audioUtils";
 function Player(props) {
     let timeout = null;
     const playerRef = useRef(null);
-    const playerPosition = null
+    let playerPosition = null
 
     const [state, setState] = useState(
         {
@@ -34,7 +34,7 @@ function Player(props) {
     }, [state.classIndex]);
 
     useEffect(() => {
-        playerPosition = playerRef.current.getBoundingClientRect();
+        playerPosition = playerRef.current.getBoundingClientRect().left;
         eventsBus.dispatch('onPlayerMove', playerPosition)
 
         eventsBus.on('onSwim', hitCheck)
@@ -93,9 +93,9 @@ function Player(props) {
             props.gameOverFunc();
         }
 
-        if (topDivRight < playerLeft && !props.gameOver) {
+        /* if (topDivRight < playerLeft && !props.gameOver) {
             props.scoreFunction()
-        }
+        } */
     }
 
     return (

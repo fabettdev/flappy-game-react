@@ -10,7 +10,7 @@ import eventsBus from '../../../utils/eventBus'
 // Stato pesci sopra diventa il numero che esce
 // Stato pesci sotto diventa numero casuale tra 0 e 9 - pesci sopra)
 
-function EnemyContainer() {
+function EnemyContainer(props) {
 
     const divsPosition = {};
     const topDivRef = useRef(null);
@@ -52,6 +52,8 @@ function EnemyContainer() {
         divsPosition.bottomDiv = bottomDivRef.current.getBoundingClientRect();
         eventsBus.dispatch('onSwim', divsPosition);
 
+        eventsBus.on('onPlayerMove', positionCheck)
+
         // Intervallo per muovere il div
         interval = setInterval(() => {
             setState(
@@ -61,8 +63,17 @@ function EnemyContainer() {
                 }
             )
         }, 10)
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(interval)
+            eventsBus.remove('onPlayerMove', positionCheck)
+        };
     }, [state]);
+
+    function positionCheck(playerHitbox) {
+        if (divsPosition.topDiv.right < playerHitbox && !props.gameOver) {
+            props.scoreFunction()
+        }
+    }
 
     return (
         <div className='pillars-container' style={{ right: `${state.translateX}px` }}>
