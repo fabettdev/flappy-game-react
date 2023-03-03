@@ -19,11 +19,6 @@ function GameOver(props) {
                 <p>Best Score: {props.bestScore}</p>
             </fieldset>
             <div className='button-container'>
-                <Button
-                    buttonLabel='REPLAY'
-                    buttonStyle='button1'
-                    callback={props.replayFunc}
-                />
                 <Link
                     className='button2'
                     to={'/'}

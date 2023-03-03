@@ -9,6 +9,7 @@ import Tutorial from '../../components/funcComponents/tutorial/Tutorial';
 import GameOver from '../../components/hooksComponents/gameOver/GameOver'
 import GameStatusText from '../../components/funcComponents/gamestatustext/GameStatusText';
 import './game.css'
+import { setLocalStorage, getLocalStorage } from '../../utils/localStorageUtils';
 
 class Game extends Component {
   constructor(props) {
@@ -33,6 +34,17 @@ class Game extends Component {
       this.pushEnemy(enemyArr);
       this.setState({ enemyList: enemyArr })
     }, 4000)
+  }
+
+  storageInit() {
+    let storage = getLocalStorage('score')
+    if (storage != null || storage != undefined) {
+      let myObj = {
+        scores: [],
+        best: 0,
+      }
+      setLocalStorage('score', myObj)
+    }
   }
 
   componentDidUpdate() {
@@ -67,6 +79,12 @@ class Game extends Component {
         gameOver: true,
       }
     )
+    let pastScore = getLocalStorage('score')
+    if (this.state.score > pastScore.best) {
+      pastScore.best = this.state.score
+    }
+    pastScore
+    setLocalStorage('score'.pastScore)
   }
 
   replay = () => {
