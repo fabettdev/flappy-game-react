@@ -11,8 +11,6 @@ import eventsBus from '../../../utils/eventBus'
 // Stato pesci sotto diventa numero casuale tra 0 e 9 - pesci sopra)
 
 function EnemyContainer(props) {
-
-    const divsPosition = {};
     const topDivRef = useRef(null);
     const bottomDivRef = useRef(null);
     let interval = null;
@@ -22,6 +20,7 @@ function EnemyContainer(props) {
         upperFishes: [],
         lowerFishes: [],
         translateX: -100,
+        id: Math.random(),
     })
 
     useEffect(() => {
@@ -30,7 +29,6 @@ function EnemyContainer(props) {
         const lowerFishes = [];
         const upperNum = Math.floor(Math.random() * 9 + 1);
         const lowerNum = Math.floor(Math.random() * (maxFishes - upperNum + 1));
-        console.log(upperNum, lowerNum)
         for (let i = 0; i < upperNum; i++) {
             const fish = <Fish key={`${i}-${Math.random()}`} />;
             upperFishes.push(fish);
@@ -48,10 +46,7 @@ function EnemyContainer(props) {
 
     useEffect(() => {
         // Invio posizione dei div al player tramite evento
-        divsPosition.topDiv = topDivRef.current.getBoundingClientRect();
-        divsPosition.bottomDiv = bottomDivRef.current.getBoundingClientRect();
-        eventsBus.dispatch('onSwim', divsPosition);
-
+        eventsBus.on('onSwim', hitCheck)
         // Intervallo per muovere il div
         interval = setInterval(() => {
             setState(
@@ -61,8 +56,52 @@ function EnemyContainer(props) {
                 }
             )
         }, 10)
-        return () => clearInterval(interval);
+        return () => {
+            eventsBus.remove('onSwim', hitCheck)
+            clearInterval(interval);
+        }
     }, [state]);
+
+    function hitCheck(playerHitbox) {
+        const { bottom: playerBottom, top: playerTop, right: playerRight, left: playerLeft } = playerHitbox;
+        if (!topDivRef.current && !bottomDivRef.current) return;
+        const { bottom: topDivBottom, right: topDivRight, left: topDivLeft } = topDivRef.current.getBoundingClientRect();
+        const { top: bottomDivTop, right: bottomDivRight, left: bottomDivLeft } = bottomDivRef.current.getBoundingClientRect();
+        let verticalHitTop = false
+        let verticalHitBottom = false
+        let horizontalHit = false
+        let borderHit = false
+
+        // Controllo player esce dai bordi
+        if (playerTop <= 0 || playerBottom > window.innerHeight) {
+            borderHit = true
+        }
+
+        // Controllo player supera orizzontalmente il div
+        if (topDivLeft < playerRight || bottomDivLeft < playerRight) {
+            // Controllo player ha già superato il div
+            if (playerLeft < topDivRight || playerLeft < bottomDivRight)
+                horizontalHit = true
+        }
+
+        // Controllo player è alla stessa altezza del div superiore
+        if (playerTop < topDivBottom) {
+            verticalHitTop = true
+        }
+
+        // Controllo player è alla stessa altezza del div inferiore
+        if (playerBottom > bottomDivTop) {
+            verticalHitBottom = true
+        }
+
+        if ((horizontalHit && verticalHitBottom) || (horizontalHit && verticalHitTop) || borderHit) {
+            props.gameOverFunc();
+        }
+
+        if (topDivRight < playerLeft && !props.gameOver) {
+            props.scoreFunction(state.id)
+        }
+    }
 
     return (
         <div className='pillars-container' style={{ right: `${state.translateX}px` }}>
