@@ -37,3 +37,31 @@
 .player.swim7 {
   background-image: url(../../../assets/images/player/swimming/player-swiming7.png);
 }
+
+.player.rush1 {
+  background-image: url(../../../assets/images/player/rush/player-rush1.png)
+}
+
+.player.rush2 {
+  background-image: url(../../../assets/images/player/rush/player-rush2.png)
+}
+
+.player.rush3 {
+  background-image: url(../../../assets/images/player/rush/player-rush3.png)
+}
+
+.player.rush4 {
+  background-image: url(../../../assets/images/player/rush/player-rush4.png)
+}
+
+.player.rush5 {
+  background-image: url(../../../assets/images/player/rush/player-rush5.png)
+}
+
+.player.rush6 {
+  background-image: url(../../../assets/images/player/rush/player-rush6.png)
+}
+
+.player.rush7 {
+  background-image: url(../../../assets/images/player/rush/player-rush7.png)
+}

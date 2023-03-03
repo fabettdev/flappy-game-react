@@ -14,6 +14,7 @@ function Player(props) {
         {
             classIndex: 1,
             translatePlayerY: 50,
+            class: 'swim'
         }
     )
 
