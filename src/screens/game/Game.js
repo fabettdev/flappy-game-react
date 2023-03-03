@@ -83,7 +83,7 @@ class Game extends Component {
     if (this.state.score > pastScore.best) {
       pastScore.best = this.state.score
     }
-    pastScore
+    pastScore.scores.push(this.state.score)
     setLocalStorage('score'.pastScore)
   }
 
