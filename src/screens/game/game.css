@@ -1,6 +1,6 @@
 .score-container {
-    position: absolute;
-    top: 50%;
-    left: 10%;
-    transform: "translateY(-50%)";
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: "translateX(-50%)";
 }

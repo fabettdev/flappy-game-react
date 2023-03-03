@@ -19,6 +19,7 @@ class Game extends Component {
       hasStarted: false,
       gameOver: false,
       enemyList: [],
+      enemyPassed: [],
       score: 0
     }
 
@@ -66,9 +67,17 @@ class Game extends Component {
     )
   }
 
-  scoreIncrease = () => {
+  scoreIncrease = (enemyId) => {
+    let partialScore = this.state.score;
+    const enemyPassed = [...this.state.enemyPassed];
+    if (enemyPassed.includes(enemyId)) return;
+    if (!enemyPassed.includes(enemyId)) {
+      enemyPassed.push(enemyId);
+      partialScore += 1
+    };
     this.setState({
-      score: this.state.score + 1,
+      enemyPassed,
+      score: partialScore,
     })
   }
 
@@ -103,7 +112,7 @@ class Game extends Component {
   }
 
   pushEnemy(array) {
-    array.push(<EnemyContainer key={Math.random()} scoreFunction={this.scoreIncrease} gameOver={this.state.gameOver} />)
+    array.push(<EnemyContainer key={Math.random()} gameOverFunc={this.gameOver} gameOver={this.state.gameOver} scoreFunction={this.scoreIncrease} />)
   }
 
   renderMap(item) {
@@ -116,7 +125,7 @@ class Game extends Component {
   render() {
     return (
       <Background stopAnimation={this.state.gameOver}>
-        <Player hasStarted={this.state.hasStarted} startFunc={this.startGame} gameOverFunc={this.gameOver} gameOver={this.state.gameOver} scoreFunction={this.scoreIncrease} />
+        <Player hasStarted={this.state.hasStarted} startFunc={this.startGame} />
         {!this.state.hasStarted && !this.state.gameOver && <Tutorial />}
         {
           this.state.gameOver &&

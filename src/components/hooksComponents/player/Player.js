@@ -35,14 +35,12 @@ function Player(props) {
     }, [state.classIndex]);
 
     useEffect(() => {
-        playerPosition = playerRef.current.getBoundingClientRect().left;
-        eventsBus.dispatch('onPlayerMove', playerPosition)
+        playerPosition = playerRef.current.getBoundingClientRect();
+        eventsBus.dispatch('onSwim', playerPosition);
 
-        eventsBus.on('onSwim', hitCheck)
         eventsBus.on('onClickPlayer', playerUp);
         return () => {
             eventsBus.remove('onClickPlayer', playerUp);
-            eventsBus.remove('onSwim', hitCheck);
         }
     }, [state]);
 
@@ -56,47 +54,6 @@ function Player(props) {
             }
         ))
         jumpEffect()
-    }
-
-    function hitCheck(containerHitbox) {
-        const { bottom: playerBottom, top: playerTop, right: playerRight, left: playerLeft } = playerRef.current.getBoundingClientRect();
-        const { bottom: topDivBottom, right: topDivRight, left: topDivLeft } = containerHitbox.topDiv;
-        const { top: bottomDivTop, right: bottomDivRight, left: bottomDivLeft } = containerHitbox.bottomDiv;
-
-        let verticalHitTop = false
-        let verticalHitBottom = false
-        let horizontalHit = false
-        let borderHit = false
-
-        // Controllo player esce dai bordi
-        if (playerTop <= 0 || playerBottom > window.innerHeight) {
-            borderHit = true
-        }
-
-        // Controllo player supera orizzontalmente il div
-        if (topDivLeft < playerRight || bottomDivLeft < playerRight) {
-            // Controllo player ha già superato il div
-            if (playerLeft < topDivRight || playerLeft < bottomDivRight)
-                horizontalHit = true
-        }
-
-        // Controllo player è alla stessa altezza del div superiore
-        if (playerTop < topDivBottom) {
-            verticalHitTop = true
-        }
-
-        // Controllo player è alla stessa altezza del div inferiore
-        if (playerBottom > bottomDivTop) {
-            verticalHitBottom = true
-        }
-
-        if ((horizontalHit && verticalHitBottom) || (horizontalHit && verticalHitTop) || borderHit) {
-            props.gameOverFunc();
-        }
-
-        /* if (topDivRight < playerLeft && !props.gameOver) {
-            props.scoreFunction()
-        } */
     }
 
     return (
