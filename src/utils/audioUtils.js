@@ -37,6 +37,10 @@ export function gameStart() {
     gameSoundtrack.play()
 }
 
+export function gameStop() {
+    gameSoundtrack.stop()
+}
+
 export function jumpEffect() {
     jumpSound.play()
 }

@@ -4,7 +4,7 @@ import Player from '../../components/hooksComponents/player/Player';
 import Fish from '../../components/hooksComponents/fish/Fish';
 import Background from '../../components/funcComponents/background/Background';
 import EnemyContainer from '../../components/hooksComponents/fish/EnemyContainer';
-import { gameStart } from '../../utils/audioUtils';
+import { gameStart, gameStop } from '../../utils/audioUtils';
 import Tutorial from '../../components/funcComponents/tutorial/Tutorial';
 import GameOver from '../../components/hooksComponents/gameOver/GameOver'
 import GameStatusText from '../../components/funcComponents/gamestatustext/GameStatusText';
@@ -111,6 +111,7 @@ class Game extends Component {
   }
 
   componentWillUnmount() {
+    gameStop()
   }
 
   render() {
