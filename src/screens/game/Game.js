@@ -20,7 +20,8 @@ class Game extends Component {
       gameOver: false,
       enemyList: [],
       enemyPassed: [],
-      score: 0
+      score: 0,
+      best: 0,
     }
 
     this.interval = null
@@ -28,6 +29,7 @@ class Game extends Component {
 
   componentDidMount() {
     gameStart()
+    this.storageInit()
     this.interval = setInterval(() => {
       if (!this.state.hasStarted || this.state.gameOver) return;
       const enemyArr = [...this.state.enemyList];
@@ -39,7 +41,7 @@ class Game extends Component {
 
   storageInit() {
     let storage = getLocalStorage('score')
-    if (storage != null || storage != undefined) {
+    if (storage === null || storage === undefined) {
       let myObj = {
         scores: [],
         best: 0,
@@ -82,18 +84,20 @@ class Game extends Component {
   }
 
   gameOver = () => {
-    this.setState(
-      {
-        hasStarted: false,
-        gameOver: true,
-      }
-    )
+
     let pastScore = getLocalStorage('score')
     if (this.state.score > pastScore.best) {
       pastScore.best = this.state.score
     }
     pastScore.scores.push(this.state.score)
-    setLocalStorage('score'.pastScore)
+    setLocalStorage('score', pastScore)
+    this.setState(
+      {
+        hasStarted: false,
+        gameOver: true,
+        best: pastScore.best,
+      }
+    )
   }
 
   checkEnemyArr(array) {
@@ -103,7 +107,7 @@ class Game extends Component {
   }
 
   pushEnemy(array) {
-    array.push(<EnemyContainer key={Math.random()} gameOverFunc={this.gameOver} gameOver={this.state.gameOver} scoreFunction={this.scoreIncrease} />)
+    array.push(<EnemyContainer key={Math.random()} /* gameOverFunc={this.gameOver} */ gameOver={this.state.gameOver} /* scoreFunction={this.scoreIncrease} */ />)
   }
 
   renderMap(item) {
@@ -121,7 +125,10 @@ class Game extends Component {
         {!this.state.hasStarted && !this.state.gameOver && <Tutorial />}
         {
           this.state.gameOver &&
-          <GameOver />
+          <GameOver
+            bestScore={this.state.best}
+            lastScore={this.state.score}
+          />
         }
         {
           !this.state.gameOver && this.state.enemyList.map(this.renderMap)

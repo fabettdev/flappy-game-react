@@ -31,6 +31,7 @@ export function audioStop() {
 }
 
 export function gameStart() {
+    gameSoundtrack.stop()
     splashSoundtrack.stop()
     gameSoundtrack.stop()
     waterJump.play()
