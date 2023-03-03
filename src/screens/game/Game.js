@@ -96,15 +96,6 @@ class Game extends Component {
     setLocalStorage('score'.pastScore)
   }
 
-  replay = () => {
-    this.setState({
-      hasStarted: false,
-      gameOver: false,
-      enemyList: [],
-      score: 0
-    })
-  }
-
   checkEnemyArr(array) {
     if (array.length > 5) {
       array.shift()
@@ -125,14 +116,14 @@ class Game extends Component {
   render() {
     return (
       <Background stopAnimation={this.state.gameOver}>
-        <Player hasStarted={this.state.hasStarted} startFunc={this.startGame} />
+        <Player hasStarted={this.state.hasStarted} startFunc={this.startGame} gameOverFunc={this.gameOver} gameOver={this.state.gameOver} scoreFunction={this.scoreIncrease} />
         {!this.state.hasStarted && !this.state.gameOver && <Tutorial />}
         {
           this.state.gameOver &&
-          <GameOver replayFunc={this.replay} />
+          <GameOver />
         }
         {
-          this.state.enemyList.map(this.renderMap)
+          !this.state.gameOver && this.state.enemyList.map(this.renderMap)
         }
         <div className='score-container'>
           <GameStatusText

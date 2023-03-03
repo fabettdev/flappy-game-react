@@ -15,12 +15,13 @@ function EnemyContainer(props) {
     const bottomDivRef = useRef(null);
     let interval = null;
     const maxFishes = 9;
+    const container = {};
 
     const [state, setState] = useState({
         upperFishes: [],
         lowerFishes: [],
         translateX: -100,
-        id: Math.random(),
+        id: Math.random() * Math.random(),
     })
 
     useEffect(() => {
@@ -46,7 +47,10 @@ function EnemyContainer(props) {
 
     useEffect(() => {
         // Invio posizione dei div al player tramite evento
-        eventsBus.on('onSwim', hitCheck)
+        container.topDiv = topDivRef.current.getBoundingClientRect();
+        container.bottomDiv = bottomDivRef.current.getBoundingClientRect();
+        container.id = state.id;
+        eventsBus.dispatch('onSwim', container)
         // Intervallo per muovere il div
         interval = setInterval(() => {
             setState(
@@ -57,51 +61,9 @@ function EnemyContainer(props) {
             )
         }, 10)
         return () => {
-            eventsBus.remove('onSwim', hitCheck)
             clearInterval(interval);
         }
     }, [state]);
-
-    function hitCheck(playerHitbox) {
-        const { bottom: playerBottom, top: playerTop, right: playerRight, left: playerLeft } = playerHitbox;
-        if (!topDivRef.current && !bottomDivRef.current) return;
-        const { bottom: topDivBottom, right: topDivRight, left: topDivLeft } = topDivRef.current.getBoundingClientRect();
-        const { top: bottomDivTop, right: bottomDivRight, left: bottomDivLeft } = bottomDivRef.current.getBoundingClientRect();
-        let verticalHitTop = false
-        let verticalHitBottom = false
-        let horizontalHit = false
-        let borderHit = false
-
-        // Controllo player esce dai bordi
-        if (playerTop <= 0 || playerBottom > window.innerHeight) {
-            borderHit = true
-        }
-
-        // Controllo player supera orizzontalmente il div
-        if (topDivLeft < playerRight || bottomDivLeft < playerRight) {
-            // Controllo player ha già superato il div
-            if (playerLeft < topDivRight || playerLeft < bottomDivRight)
-                horizontalHit = true
-        }
-
-        // Controllo player è alla stessa altezza del div superiore
-        if (playerTop < topDivBottom) {
-            verticalHitTop = true
-        }
-
-        // Controllo player è alla stessa altezza del div inferiore
-        if (playerBottom > bottomDivTop) {
-            verticalHitBottom = true
-        }
-
-        if ((horizontalHit && verticalHitBottom) || (horizontalHit && verticalHitTop) || borderHit) {
-            props.gameOverFunc();
-        }
-
-        if (topDivRight < playerLeft && !props.gameOver) {
-            props.scoreFunction(state.id)
-        }
-    }
 
     return (
         <div className='pillars-container' style={{ right: `${state.translateX}px` }}>
