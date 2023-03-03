@@ -22,6 +22,11 @@ const waterJump = new Howl({
     volume: 0.2,
 })
 
+const gameOverSound = new Howl({
+    src: ["/game_over.mp3"],
+    volume: 0.2,
+})
+
 export function audioStart() {
     splashSoundtrack.play()
 }
@@ -31,9 +36,7 @@ export function audioStop() {
 }
 
 export function gameStart() {
-    gameSoundtrack.stop()
     splashSoundtrack.stop()
-    gameSoundtrack.stop()
     waterJump.play()
     gameSoundtrack.play()
 }
@@ -44,4 +47,8 @@ export function gameStop() {
 
 export function jumpEffect() {
     jumpSound.play()
+}
+
+export function gameOverEffect() {
+    gameOverSound.play()
 }

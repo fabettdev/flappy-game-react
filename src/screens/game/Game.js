@@ -4,7 +4,7 @@ import Player from '../../components/hooksComponents/player/Player';
 import Fish from '../../components/hooksComponents/fish/Fish';
 import Background from '../../components/funcComponents/background/Background';
 import EnemyContainer from '../../components/hooksComponents/fish/EnemyContainer';
-import { gameStart, gameStop } from '../../utils/audioUtils';
+import { gameStart, gameStop, gameOverEffect } from '../../utils/audioUtils';
 import Tutorial from '../../components/funcComponents/tutorial/Tutorial';
 import GameOver from '../../components/hooksComponents/gameOver/GameOver'
 import GameStatusText from '../../components/funcComponents/gamestatustext/GameStatusText';
@@ -84,7 +84,8 @@ class Game extends Component {
   }
 
   gameOver = () => {
-
+    gameStop()
+    gameOverEffect()
     let pastScore = getLocalStorage('score')
     if (this.state.score > pastScore.best) {
       pastScore.best = this.state.score
