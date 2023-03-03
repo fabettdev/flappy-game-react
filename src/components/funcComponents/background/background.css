@@ -3,6 +3,7 @@
   width: 900px;
   max-width: 900px;
   position: relative;
+  overflow: clip;
 }
 
 .background-css {
