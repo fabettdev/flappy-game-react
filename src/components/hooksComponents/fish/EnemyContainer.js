@@ -16,13 +16,12 @@ function EnemyContainer(props) {
     const topDivRef = useRef(null);
     const bottomDivRef = useRef(null);
     let interval = null;
+    const maxFishes = 9;
 
     const [state, setState] = useState({
-        maxFishes: 9,
         upperFishes: [],
         lowerFishes: [],
         translateX: -100,
-        isPassed: false,
     })
 
     useEffect(() => {
@@ -30,7 +29,7 @@ function EnemyContainer(props) {
         const upperFishes = [];
         const lowerFishes = [];
         const upperNum = Math.floor(Math.random() * 9 + 1);
-        const lowerNum = Math.floor(Math.random() * (state.maxFishes - upperNum + 1));
+        const lowerNum = Math.floor(Math.random() * (maxFishes - upperNum + 1));
         console.log(upperNum, lowerNum)
         for (let i = 0; i < upperNum; i++) {
             const fish = <Fish key={`${i}-${Math.random()}`} />;
@@ -62,34 +61,8 @@ function EnemyContainer(props) {
                 }
             )
         }, 10)
-        return () => {
-            clearInterval(interval)
-            eventsBus.remove('onPlayerMove', positionCheck)
-        };
+        return () => clearInterval(interval);
     }, [state]);
-
-    useEffect(() => {
-        eventsBus.on('onPlayerMove', positionCheck)
-    }, [state])
-
-    function positionCheck(playerHitbox) {
-        let passedCheck = false
-
-        if (topDivRef.current !== null) {
-            let topDiv = topDivRef.current.getBoundingClientRect();
-            //console.log(topDiv.right)
-
-            if (!state.isPassed && topDiv.right < playerHitbox && !props.gameOver) {
-                props.scoreFunction()
-                passedCheck = true
-                console.log(passedCheck)
-            }
-        }
-        setState({
-            ...state,
-            isPassed: passedCheck,
-        })
-    }
 
     return (
         <div className='pillars-container' style={{ right: `${state.translateX}px` }}>

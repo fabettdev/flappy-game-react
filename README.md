@@ -1,8 +1,7 @@
 # TODOLIST
 
-- Punti aggiunti
-- Inizio partita stato
-- Fine partita stato
+- Punteggio da sistemare
+- Restart sistemare posizione player e sfondo
 - Local storage
 - Musica
 - Effetti

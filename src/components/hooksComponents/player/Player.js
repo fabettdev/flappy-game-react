@@ -35,9 +35,6 @@ function Player(props) {
     }, [state.classIndex]);
 
     useEffect(() => {
-        playerPosition = playerRef.current.getBoundingClientRect().left;
-        eventsBus.dispatch('onPlayerMove', playerPosition)
-
         eventsBus.on('onSwim', hitCheck)
         eventsBus.on('onClickPlayer', playerUp);
         return () => {
