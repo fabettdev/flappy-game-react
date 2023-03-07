@@ -10,6 +10,9 @@ function Background(props) {
         if (props.stopAnimation) {
             background.current.style.animationPlayState = "paused";
             midground.current.style.animationPlayState = "paused";
+        } else {
+            background.current.style.animationPlayState = "running";
+            midground.current.style.animationPlayState = "running";
         }
     }, [props.stopAnimation]);
 

@@ -1,13 +1,22 @@
 .player {
   display: inline-block;
-  width: 10vh;
-  height: 5vh;
   background-repeat: no-repeat;
   background-size: cover;
-  position: absolute;
-  top: 50%;
-  left: 10%;
-  transform: "translateY(-50%)";
+}
+
+.player.swim {
+  width: 10vh;
+  height: 5vh;
+}
+
+.player.idle {
+  width: 7.8vh;
+  height: 10.2vh;
+}
+
+.player.hurt {
+  width: 7.75vh;
+  height: 10vh;
 }
 
 .player.swim1 {
@@ -36,4 +45,48 @@
 
 .player.swim7 {
   background-image: url(../../../assets/images/player/swimming/player-swiming7.png);
+}
+
+.player.idle1 {
+  background-image: url(../../../assets/images/player/idle/player-idle1.png);
+}
+
+.player.idle2 {
+  background-image: url(../../../assets/images/player/idle/player-idle2.png);
+}
+
+.player.idle3 {
+  background-image: url(../../../assets/images/player/idle/player-idle3.png);
+}
+
+.player.idle4 {
+  background-image: url(../../../assets/images/player/idle/player-idle4.png);
+}
+
+.player.idle5 {
+  background-image: url(../../../assets/images/player/idle/player-idle5.png);
+}
+
+.player.idle6 {
+  background-image: url(../../../assets/images/player/idle/player-idle6.png);
+}
+
+.player.hurt1 {
+  background-image: url(../../../assets/images/player/hurt/player-hurt1.png);
+}
+
+.player.hurt2 {
+  background-image: url(../../../assets/images/player/hurt/player-hurt2.png);
+}
+
+.player.hurt3 {
+  background-image: url(../../../assets/images/player/hurt/player-hurt3.png);
+}
+
+.player.hurt4 {
+  background-image: url(../../../assets/images/player/hurt/player-hurt4.png);
+}
+
+.player.hurt5 {
+  background-image: url(../../../assets/images/player/hurt/player-hurt5.png);
 }

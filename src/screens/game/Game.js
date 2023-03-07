@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../../assets/styles/common.css';
-import Player from '../../components/hooksComponents/player/Player';
-import Fish from '../../components/hooksComponents/fish/Fish';
+import PlayerContainer from '../../components/hooksComponents/playerContainer/PlayerContainer';
 import Background from '../../components/funcComponents/background/Background';
 import EnemyContainer from '../../components/hooksComponents/fish/EnemyContainer';
 import { gameStart, gameStop } from '../../utils/audioUtils';
@@ -84,7 +83,6 @@ class Game extends Component {
   }
 
   gameOver = () => {
-
     let pastScore = getLocalStorage('score')
     if (this.state.score > pastScore.best) {
       pastScore.best = this.state.score
@@ -107,11 +105,16 @@ class Game extends Component {
   }
 
   pushEnemy(array) {
-    array.push(<EnemyContainer key={Math.random()} /* gameOverFunc={this.gameOver} */ gameOver={this.state.gameOver} /* scoreFunction={this.scoreIncrease} */ />)
+    array.push(<EnemyContainer key={Math.random()} gameOver={this.state.gameOver} /* scoreFunction={this.scoreIncrease} */ />)
   }
 
   renderMap(item) {
     return item
+  }
+
+  setAnimationStatus() {
+    if (this.state.gameOver || !this.state.hasStarted) return true;
+    if (this.state.hasStarted) return false;
   }
 
   componentWillUnmount() {
@@ -120,8 +123,8 @@ class Game extends Component {
 
   render() {
     return (
-      <Background stopAnimation={this.state.gameOver}>
-        <Player hasStarted={this.state.hasStarted} startFunc={this.startGame} gameOverFunc={this.gameOver} gameOver={this.state.gameOver} scoreFunction={this.scoreIncrease} />
+      <Background stopAnimation={this.setAnimationStatus()}>
+        <PlayerContainer hasStarted={this.state.hasStarted} startFunc={this.startGame} gameOverFunc={this.gameOver} gameOver={this.state.gameOver} scoreFunction={this.scoreIncrease} />
         {!this.state.hasStarted && !this.state.gameOver && <Tutorial />}
         {
           this.state.gameOver &&

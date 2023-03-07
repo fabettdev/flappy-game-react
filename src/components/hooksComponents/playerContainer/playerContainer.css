@@ -1,0 +1,7 @@
+.player-container {
+  display: inline;
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: "translateY(-50%)";
+}
