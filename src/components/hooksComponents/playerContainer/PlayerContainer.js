@@ -6,7 +6,7 @@ import { jumpEffect } from "../../../utils/audioUtils";
 
 function PlayerContainer(props) {
     let timeout = null;
-    const playerContainerRef = useRef(null);
+    const playerContainerRef = useRef();
 
     const [state, setState] = useState(
         {
