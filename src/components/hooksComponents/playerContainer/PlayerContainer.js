@@ -6,9 +6,8 @@ import { jumpEffect } from "../../../utils/audioUtils";
 
 
 
-function PlayerContainer(props) {
+function PlayerCont(props, ref) {
     let timeout = null;
-    let playerContainerRef = useRef();
     //console.log('initialContainer', playerContainerRef.current)
 
     const [state, setState] = useState(
@@ -21,16 +20,16 @@ function PlayerContainer(props) {
     useEffect(() => {
         //let coord = playerContainerRef.current.getBoundingClientRect()
         //playerContainerRef = document.getElementById('playerContainerRef')
-        document.addEventListener('onSwim', (e) => {
+        /* document.addEventListener('onSwim', (e) => {
             e.stopImmediatePropagation();
             hitCheck(e.detail)
-        });
+        }); */
         document.addEventListener('onClickPlayer', playerUp);
         //console.log('useEffectContainer', coord)
 
 
         return () => {
-            document.removeEventListener('onSwim', hitCheck);
+            // document.removeEventListener('onSwim', hitCheck);
             document.removeEventListener('onClickPlayer', playerUp);
             ;
         }
@@ -66,7 +65,7 @@ function PlayerContainer(props) {
         jumpEffect()
     }
 
-    const hitCheck = (containerHitbox) => {
+    /* const hitCheck = (containerHitbox) => {
         const { bottom: playerBottom, top: playerTop, right: playerRight, left: playerLeft } = playerContainerRef.current.getBoundingClientRect()
         const { bottom: topDivBottom, right: topDivRight, left: topDivLeft } = containerHitbox.topDiv;
         const { top: bottomDivTop, right: bottomDivRight, left: bottomDivLeft } = containerHitbox.bottomDiv;
@@ -106,10 +105,10 @@ function PlayerContainer(props) {
         if (topDivRight < playerLeft && !props.gameOver) {
             props.scoreFunction(containerId);
         }
-    }
+    } */
 
     return (
-        <div id={'playerContainerRef'} ref={ref => playerContainerRef = ref} className="player-container" style={{
+        <div ref={ref} className="player-container" style={{
             top: `${state.translatePlayerY}%`,
             transition: 'top 0.3s ease-out',
             transform: 'translateY(-50%)',
@@ -120,5 +119,7 @@ function PlayerContainer(props) {
         </div>
     )
 }
+
+const PlayerContainer = React.forwardRef(PlayerCont);
 
 export default PlayerContainer;

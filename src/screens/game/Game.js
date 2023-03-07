@@ -14,6 +14,10 @@ class Game extends Component {
   constructor(props) {
     super(props);
 
+    this.interval = null
+    this.playerRef = React.createRef();
+
+
     this.state = {
       hasStarted: false,
       gameOver: false,
@@ -23,7 +27,6 @@ class Game extends Component {
       best: 0,
     }
 
-    this.interval = null
   }
 
   componentDidMount() {
@@ -68,6 +71,49 @@ class Game extends Component {
     )
   }
 
+  hitCheck = (containerHitbox) => {
+    const { bottom: playerBottom, top: playerTop, right: playerRight, left: playerLeft } = this.playerRef.current.getBoundingClientRect();
+    const { bottom: topDivBottom, right: topDivRight, left: topDivLeft } = containerHitbox.topDiv;
+    const { top: bottomDivTop, right: bottomDivRight, left: bottomDivLeft } = containerHitbox.bottomDiv;
+    console.log('topDivRight', topDivRight)
+    console.log('playerTop', playerTop)
+    const containerId = containerHitbox.id;
+    let verticalHitTop = false
+    let verticalHitBottom = false
+    let horizontalHit = false
+    let borderHit = false
+
+    // Controllo player esce dai bordi
+    if (playerTop <= 0 || playerBottom > window.innerHeight) {
+      borderHit = true
+    }
+
+    // Controllo player supera orizzontalmente il div
+    if (topDivLeft < playerRight || bottomDivLeft < playerRight) {
+      // Controllo player ha già superato il div
+      if (playerLeft < topDivRight || playerLeft < bottomDivRight)
+        horizontalHit = true
+    }
+
+    // Controllo player è alla stessa altezza del div superiore
+    if (playerTop < topDivBottom) {
+      verticalHitTop = true
+    }
+
+    // Controllo player è alla stessa altezza del div inferiore
+    if (playerBottom > bottomDivTop) {
+      verticalHitBottom = true
+    }
+
+    if ((horizontalHit && verticalHitBottom) || (horizontalHit && verticalHitTop) || borderHit) {
+      this.gameOver();
+    }
+
+    if (topDivRight < playerLeft && !this.state.gameOver) {
+      this.scoreIncrease(containerId);
+    }
+  }
+
   scoreIncrease = (enemyId) => {
     let partialScore = this.state.score;
     const enemyPassed = [...this.state.enemyPassed];
@@ -107,7 +153,7 @@ class Game extends Component {
   }
 
   pushEnemy(array) {
-    array.push(<EnemyContainer key={Math.random()} gameOver={this.state.gameOver} /* scoreFunction={this.scoreIncrease} */ />)
+    array.push(<EnemyContainer hitFunc={this.hitCheck} key={Math.random()} gameOver={this.state.gameOver} /* scoreFunction={this.scoreIncrease} */ />)
   }
 
   renderMap(item) {
@@ -126,7 +172,7 @@ class Game extends Component {
   render() {
     return (
       <Background stopAnimation={this.setAnimationStatus()}>
-        <PlayerContainer hasStarted={this.state.hasStarted} startFunc={this.startGame} gameOverFunc={this.gameOver} gameOver={this.state.gameOver} scoreFunction={this.scoreIncrease} />
+        <PlayerContainer ref={this.playerRef} hasStarted={this.state.hasStarted} startFunc={this.startGame} gameOverFunc={this.gameOver} gameOver={this.state.gameOver} scoreFunction={this.scoreIncrease} />
         {!this.state.hasStarted && !this.state.gameOver && <Tutorial />}
         {
           this.state.gameOver &&
