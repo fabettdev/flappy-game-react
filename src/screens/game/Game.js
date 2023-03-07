@@ -17,7 +17,6 @@ class Game extends Component {
     this.interval = null
     this.playerRef = React.createRef();
 
-
     this.state = {
       hasStarted: false,
       gameOver: false,
@@ -26,7 +25,6 @@ class Game extends Component {
       score: 0,
       best: 0,
     }
-
   }
 
   componentDidMount() {

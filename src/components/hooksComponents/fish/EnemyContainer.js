@@ -63,7 +63,7 @@ function EnemyContainer(props) {
         return () => {
             clearInterval(interval);
         }
-    }, [state]);
+    }, [state.upperFishes, state.translateX]);
 
     return (
         <div className='pillars-container' style={{ right: `${state.translateX}px` }}>

@@ -1,14 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import './playerContainer.css';
 import Player from "../player/Player";
-import eventsBus from "../../../utils/eventBus";
 import { jumpEffect } from "../../../utils/audioUtils";
-
-
 
 function PlayerCont(props, ref) {
     let timeout = null;
-    //console.log('initialContainer', playerContainerRef.current)
 
     const [state, setState] = useState(
         {
@@ -16,28 +12,12 @@ function PlayerCont(props, ref) {
         }
     )
 
-
     useEffect(() => {
-        //let coord = playerContainerRef.current.getBoundingClientRect()
-        //playerContainerRef = document.getElementById('playerContainerRef')
-        /* document.addEventListener('onSwim', (e) => {
-            e.stopImmediatePropagation();
-            hitCheck(e.detail)
-        }); */
         document.addEventListener('onClickPlayer', playerUp);
-        //console.log('useEffectContainer', coord)
-
-
-        return () => {
-            // document.removeEventListener('onSwim', hitCheck);
-            document.removeEventListener('onClickPlayer', playerUp);
-            ;
-        }
+        return () => document.removeEventListener('onClickPlayer', playerUp);
     }, []);
 
     useEffect(() => {
-
-        //console.log('useEffectContainer', coord)
         timeout = setInterval(() => {
             setState(prevState => (
                 {
@@ -64,48 +44,6 @@ function PlayerCont(props, ref) {
         ))
         jumpEffect()
     }
-
-    /* const hitCheck = (containerHitbox) => {
-        const { bottom: playerBottom, top: playerTop, right: playerRight, left: playerLeft } = playerContainerRef.current.getBoundingClientRect()
-        const { bottom: topDivBottom, right: topDivRight, left: topDivLeft } = containerHitbox.topDiv;
-        const { top: bottomDivTop, right: bottomDivRight, left: bottomDivLeft } = containerHitbox.bottomDiv;
-        const containerId = containerHitbox.id;
-        let verticalHitTop = false
-        console.log(playerContainerRef)
-        let verticalHitBottom = false
-        let horizontalHit = false
-        let borderHit = false
-
-        // Controllo player esce dai bordi
-        if (playerTop <= 0 || playerBottom > window.innerHeight) {
-            borderHit = true
-        }
-
-        // Controllo player supera orizzontalmente il div
-        if (topDivLeft < playerRight || bottomDivLeft < playerRight) {
-            // Controllo player ha già superato il div
-            if (playerLeft < topDivRight || playerLeft < bottomDivRight)
-                horizontalHit = true
-        }
-
-        // Controllo player è alla stessa altezza del div superiore
-        if (playerTop < topDivBottom) {
-            verticalHitTop = true
-        }
-
-        // Controllo player è alla stessa altezza del div inferiore
-        if (playerBottom > bottomDivTop) {
-            verticalHitBottom = true
-        }
-
-        if ((horizontalHit && verticalHitBottom) || (horizontalHit && verticalHitTop) || borderHit) {
-            props.gameOverFunc();
-        }
-
-        if (topDivRight < playerLeft && !props.gameOver) {
-            props.scoreFunction(containerId);
-        }
-    } */
 
     return (
         <div ref={ref} className="player-container" style={{
