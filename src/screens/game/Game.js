@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../assets/styles/common.css';
 import PlayerContainer from '../../components/hooksComponents/playerContainer/PlayerContainer';
 import Background from '../../components/funcComponents/background/Background';
@@ -9,143 +9,134 @@ import GameOver from '../../components/hooksComponents/gameOver/GameOver'
 import GameStatusText from '../../components/funcComponents/gamestatustext/GameStatusText';
 import './game.css'
 import { setLocalStorage, getLocalStorage } from '../../utils/localStorageUtils';
+import { jumpEffect } from "../../utils/audioUtils";
 
-class Game extends Component {
-  constructor(props) {
-    super(props);
+function Game() {
+  const [state, setState] = useState({
+    hasStarted: false,
+    gameOver: false,
+    enemyList: [],
+    enemyPassed: [],
+    score: 0,
+    best: 0,
+    translatePlayerY: 50,
+  });
 
-    this.state = {
-      hasStarted: false,
-      gameOver: false,
-      enemyList: [],
-      enemyPassed: [],
-      score: 0,
-      best: 0,
-    }
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!state.hasStarted || state.gameOver) return;
+      const enemyArr = [...state.enemyList];
 
-    this.interval = null
-  }
+      if (enemyArr.length > 5) {
+        enemyArr.shift()
+      }
 
-  componentDidMount() {
-    gameStart()
-    this.storageInit()
-    this.interval = setInterval(() => {
-      if (!this.state.hasStarted || this.state.gameOver) return;
-      const enemyArr = [...this.state.enemyList];
-      this.checkEnemyArr(enemyArr);
-      this.pushEnemy(enemyArr);
-      this.setState({ enemyList: enemyArr })
+      enemyArr.push(<EnemyContainer key={Math.random()} />);
+
+      setState(prevState => ({
+        ...prevState,
+        enemyList: enemyArr
+      }));
     }, 4000)
-  }
 
-  storageInit() {
-    let storage = getLocalStorage('score')
-    if (storage === null || storage === undefined) {
-      let myObj = {
-        scores: [],
-        best: 0,
-      }
-      setLocalStorage('score', myObj)
+    const timeout = setInterval(() => {
+      setState(prevState => ({
+        ...prevState,
+        translatePlayerY: state.hasStarted || state.gameOver ? prevState.translatePlayerY + 5 : prevState.translatePlayerY,
+      }))
+    }, 70)
+
+    return () => {
+      clearInterval(interval);
+      clearInterval(timeout);
     }
-  }
+  }, [state.enemyList, state.hasStarted, state.gameOver]);
 
-  componentDidUpdate() {
-  }
-
-  spawnRand = () => {
-  }
-
-  getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-  }
-
-
-  startGame = () => {
-    this.setState(
-      {
-        hasStarted: true,
-      }
-    )
-  }
-
-  scoreIncrease = (enemyId) => {
-    let partialScore = this.state.score;
-    const enemyPassed = [...this.state.enemyPassed];
+  function scoreIncrease(enemyId) {
+    let partialScore = state.score;
+    const enemyPassed = [...state.enemyPassed];
     if (enemyPassed.includes(enemyId)) return;
     if (!enemyPassed.includes(enemyId)) {
       enemyPassed.push(enemyId);
       partialScore += 1
     };
-    this.setState({
+
+    setState({
+      ...state,
       enemyPassed,
       score: partialScore,
     })
   }
 
-  gameOver = () => {
+  function gameOver() {
     gameStop()
     gameOverEffect()
-    let pastScore = getLocalStorage('score')
-    if (this.state.score > pastScore.best) {
-      pastScore.best = this.state.score
+    let pastScore = getLocalStorage('score');
+    if (pastScore === null) pastScore = 0;
+    if (state.score > pastScore) {
+      pastScore = state.score
     }
-    pastScore.scores.push(this.state.score)
     setLocalStorage('score', pastScore)
-    this.setState(
+    setState(
       {
+        ...state,
         hasStarted: false,
         gameOver: true,
-        best: pastScore.best,
+        best: pastScore,
       }
     )
   }
 
-  checkEnemyArr(array) {
-    if (array.length > 5) {
-      array.shift()
-    }
+  function playerUp() {
+    jumpEffect()
+    if (!state.gameOver && !state.hasStarted) gameStart();
+    if (!!state.gameOver && !state.hasStarted) return;
+
+    setState(
+      {
+        ...state,
+        hasStarted: true,
+        translatePlayerY: state.translatePlayerY - 25,
+      }
+    )
   }
 
-  pushEnemy(array) {
-    array.push(<EnemyContainer key={Math.random()} gameOver={this.state.gameOver} /* scoreFunction={this.scoreIncrease} */ />)
-  }
-
-  renderMap(item) {
+  function renderMap(item) {
     return item
   }
 
-  setAnimationStatus() {
-    if (this.state.gameOver || !this.state.hasStarted) return true;
-    if (this.state.hasStarted) return false;
+  function setAnimationStatus() {
+    if (state.gameOver || !state.hasStarted) return true;
+    if (state.hasStarted) return false;
   }
 
-  componentWillUnmount() {
-    gameStop()
-  }
-
-  render() {
-    return (
-      <Background stopAnimation={this.setAnimationStatus()}>
-        <PlayerContainer hasStarted={this.state.hasStarted} startFunc={this.startGame} gameOverFunc={this.gameOver} gameOver={this.state.gameOver} scoreFunction={this.scoreIncrease} />
-        {!this.state.hasStarted && !this.state.gameOver && <Tutorial />}
+  return (
+    <div onClick={playerUp}>
+      <Background stopAnimation={setAnimationStatus()}>
+        <PlayerContainer hasStarted={state.hasStarted} gameOver={state.gameOver} gameOverFunc={gameOver} scoreFunction={scoreIncrease} styleCss={{
+          top: `${state.translatePlayerY}%`,
+          transition: 'top 0.3s ease-out',
+          transform: 'translateY(-50%)',
+        }} />
+        {!state.hasStarted && !state.gameOver && <Tutorial />}
         {
-          this.state.gameOver &&
+          state.gameOver &&
           <GameOver
-            bestScore={this.state.best}
-            lastScore={this.state.score}
+            bestScore={state.best}
+            lastScore={state.score}
           />
         }
         {
-          !this.state.gameOver && this.state.enemyList.map(this.renderMap)
+          !state.gameOver && state.enemyList.map(renderMap)
         }
         <div className='score-container'>
           <GameStatusText
-            label={this.state.score.toString()}
+            label={state.score.toString()}
           />
         </div>
       </Background >
-    )
-  }
+    </div>
+  )
 }
 
 export default Game;

@@ -10,7 +10,7 @@ import eventsBus from '../../../utils/eventBus'
 // Stato pesci sopra diventa il numero che esce
 // Stato pesci sotto diventa numero casuale tra 0 e 9 - pesci sopra)
 
-function EnemyContainer(props) {
+function EnemyContainer() {
     const topDivRef = useRef(null);
     const bottomDivRef = useRef(null);
     let interval = null;
