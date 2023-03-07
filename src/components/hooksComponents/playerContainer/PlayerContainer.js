@@ -15,8 +15,11 @@ function PlayerContainer(props) {
     )
 
     useEffect(() => {
-        eventsBus.on('onSwim', hitCheck);
-        eventsBus.on('onClickPlayer', playerUp);
+        document.addEventListener('onSwim', (e) => {
+            e.stopImmediatePropagation();
+            hitCheck(e.detail)
+        });
+        document.addEventListener('onClickPlayer', playerUp);
         timeout = setInterval(() => {
             setState(prevState => (
                 {
@@ -27,8 +30,8 @@ function PlayerContainer(props) {
         }, 70)
 
         return () => {
-            eventsBus.remove('onSwim', hitCheck);
-            eventsBus.remove('onClickPlayer', playerUp);
+            document.removeEventListener('onSwim', hitCheck);
+            document.removeEventListener('onClickPlayer', playerUp);
             clearInterval(timeout);
         }
     }, [state]);

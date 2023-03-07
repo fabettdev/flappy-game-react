@@ -1,3 +1,4 @@
+
 const eventsBus = {
     on(event, callback) {
         document.addEventListener(event, (e) => {

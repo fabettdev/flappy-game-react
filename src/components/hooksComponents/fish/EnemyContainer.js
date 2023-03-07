@@ -50,7 +50,7 @@ function EnemyContainer(props) {
         container.topDiv = topDivRef.current.getBoundingClientRect();
         container.bottomDiv = bottomDivRef.current.getBoundingClientRect();
         container.id = state.id;
-        eventsBus.dispatch('onSwim', container)
+        document.dispatchEvent(new CustomEvent('onSwim', { detail: container }))
         // Intervallo per muovere il div
         interval = setInterval(() => {
             setState(

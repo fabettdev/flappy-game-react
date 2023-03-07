@@ -17,7 +17,7 @@ function Background(props) {
     }, [props.stopAnimation]);
 
     function onClickPlayerMove() {
-        eventsBus.dispatch('onClickPlayer');
+        document.dispatchEvent(new CustomEvent('onClickPlayer'))
     }
 
     return (
