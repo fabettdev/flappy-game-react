@@ -4,9 +4,12 @@ import Player from "../player/Player";
 import eventsBus from "../../../utils/eventBus";
 import { jumpEffect } from "../../../utils/audioUtils";
 
+
+
 function PlayerContainer(props) {
     let timeout = null;
-    const playerContainerRef = useRef();
+    let playerContainerRef = useRef();
+    //console.log('initialContainer', playerContainerRef.current)
 
     const [state, setState] = useState(
         {
@@ -14,12 +17,28 @@ function PlayerContainer(props) {
         }
     )
 
+
     useEffect(() => {
+        //let coord = playerContainerRef.current.getBoundingClientRect()
+        //playerContainerRef = document.getElementById('playerContainerRef')
         document.addEventListener('onSwim', (e) => {
             e.stopImmediatePropagation();
             hitCheck(e.detail)
         });
         document.addEventListener('onClickPlayer', playerUp);
+        //console.log('useEffectContainer', coord)
+
+
+        return () => {
+            document.removeEventListener('onSwim', hitCheck);
+            document.removeEventListener('onClickPlayer', playerUp);
+            ;
+        }
+    }, []);
+
+    useEffect(() => {
+
+        //console.log('useEffectContainer', coord)
         timeout = setInterval(() => {
             setState(prevState => (
                 {
@@ -30,11 +49,9 @@ function PlayerContainer(props) {
         }, 70)
 
         return () => {
-            document.removeEventListener('onSwim', hitCheck);
-            document.removeEventListener('onClickPlayer', playerUp);
             clearInterval(timeout);
         }
-    }, [state]);
+    }, [state.translatePlayerY]);
 
     function playerUp() {
         if (!!props.gameOver && !props.hasStarted) return;
@@ -49,12 +66,13 @@ function PlayerContainer(props) {
         jumpEffect()
     }
 
-    function hitCheck(containerHitbox) {
-        const { bottom: playerBottom, top: playerTop, right: playerRight, left: playerLeft } = playerContainerRef.current.getBoundingClientRect();
+    const hitCheck = (containerHitbox) => {
+        const { bottom: playerBottom, top: playerTop, right: playerRight, left: playerLeft } = playerContainerRef.current.getBoundingClientRect()
         const { bottom: topDivBottom, right: topDivRight, left: topDivLeft } = containerHitbox.topDiv;
         const { top: bottomDivTop, right: bottomDivRight, left: bottomDivLeft } = containerHitbox.bottomDiv;
         const containerId = containerHitbox.id;
         let verticalHitTop = false
+        console.log(playerContainerRef)
         let verticalHitBottom = false
         let horizontalHit = false
         let borderHit = false
@@ -91,7 +109,7 @@ function PlayerContainer(props) {
     }
 
     return (
-        <div ref={playerContainerRef} className="player-container" style={{
+        <div id={'playerContainerRef'} ref={ref => playerContainerRef = ref} className="player-container" style={{
             top: `${state.translatePlayerY}%`,
             transition: 'top 0.3s ease-out',
             transform: 'translateY(-50%)',
