@@ -31,7 +31,7 @@ function Game() {
         enemyArr.shift()
       }
 
-      enemyArr.push(<EnemyContainer key={Math.random()} />);
+      enemyArr.push(<EnemyContainer key={state.translatePlayerY * Math.random()} />);
 
       setState(prevState => ({
         ...prevState,
@@ -80,6 +80,8 @@ function Game() {
     setState(
       {
         ...state,
+        enemyList: [],
+        enemyPassed: [],
         hasStarted: false,
         gameOver: true,
         best: pastScore,

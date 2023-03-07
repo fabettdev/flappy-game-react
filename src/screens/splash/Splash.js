@@ -8,11 +8,8 @@ import { audioStart, audioStop } from '../../utils/audioUtils';
 function Splash() {
 
     useEffect(() => {
-        audioStart()
-        console.log('start')
-        return () => {
-            audioStop()
-        }
+        audioStart();
+        return () => audioStop();
     }, [])
 
     return (

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useRef } from "react";
 import './playerContainer.css';
 import Player from "../player/Player";
 import eventsBus from "../../../utils/eventBus";
