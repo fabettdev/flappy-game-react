@@ -2,12 +2,11 @@
   height: 100vh;
   width: 900px;
   max-width: 900px;
-  position: relative;
   overflow: clip;
+  position: relative;
 }
 
 .background-css {
-  position: absolute;
   width: 100%;
   height: 100%;
   background-image: url(../../../assets/images/environment/background.png);
@@ -17,7 +16,6 @@
 }
 
 .midground-css {
-  position: absolute;
   width: 100%;
   height: 100%;
   background-image: url(../../../assets/images/environment/midground.png);

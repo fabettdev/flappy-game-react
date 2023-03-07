@@ -21,13 +21,9 @@ function Splash() {
     return (
         <Background>
             <div className='splash-container'>
-                <div className='title-container'>
-                    <GameStatusText label={'flappy sub'} />
-                    <GameStatusText label={'React.js'} size={'sub'} />
-                </div>
-                <div className='button-container'>
-                    <Button buttonStyle={'orange'} buttonLabel={'play'} onClickButton={goToGame} />
-                </div>
+                <GameStatusText label={'flappy sub'} />
+                <GameStatusText label={'React.js'} size={'sub'} />
+                <Button buttonStyle={'orange'} buttonLabel={'play'} onClickButton={goToGame} />
             </div>
         </Background>
     )

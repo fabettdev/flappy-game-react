@@ -23,43 +23,25 @@ class Game extends Component {
       enemyList: [],
       enemyPassed: [],
       score: 0,
-      best: 0,
+      best: null,
     }
   }
 
   componentDidMount() {
     gameStart()
-    this.storageInit()
     this.interval = setInterval(() => {
       if (!this.state.hasStarted || this.state.gameOver) return;
       const enemyArr = [...this.state.enemyList];
-      this.checkEnemyArr(enemyArr);
-      this.pushEnemy(enemyArr);
-      this.setState({ enemyList: enemyArr })
-    }, 4000)
-  }
-
-  storageInit() {
-    let storage = getLocalStorage('score')
-    if (storage === null || storage === undefined) {
-      let myObj = {
-        scores: [],
-        best: 0,
+      if (enemyArr.length > 5) {
+        enemyArr.shift()
       }
-      setLocalStorage('score', myObj)
-    }
+      enemyArr.push(<EnemyContainer hitFunc={this.hitCheck} key={Math.random() * Math.random()} gameOver={this.state.gameOver} />)
+      this.setState({ enemyList: enemyArr })
+    }, 2500)
   }
 
   componentDidUpdate() {
   }
-
-  spawnRand = () => {
-  }
-
-  getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-  }
-
 
   startGame = () => {
     this.setState(
@@ -73,8 +55,6 @@ class Game extends Component {
     const { bottom: playerBottom, top: playerTop, right: playerRight, left: playerLeft } = this.playerRef.current.getBoundingClientRect();
     const { bottom: topDivBottom, right: topDivRight, left: topDivLeft } = containerHitbox.topDiv;
     const { top: bottomDivTop, right: bottomDivRight, left: bottomDivLeft } = containerHitbox.bottomDiv;
-    console.log('topDivRight', topDivRight)
-    console.log('playerTop', playerTop)
     const containerId = containerHitbox.id;
     let verticalHitTop = false
     let verticalHitBottom = false
@@ -130,28 +110,18 @@ class Game extends Component {
     gameStop()
     gameOverEffect()
     let pastScore = getLocalStorage('score')
-    if (this.state.score > pastScore.best) {
-      pastScore.best = this.state.score
+    if (pastScore === null) pastScore = 0;
+    if (this.state.score > pastScore) {
+      pastScore = this.state.score
     }
-    pastScore.scores.push(this.state.score)
     setLocalStorage('score', pastScore)
     this.setState(
       {
         hasStarted: false,
         gameOver: true,
-        best: pastScore.best,
+        best: pastScore,
       }
     )
-  }
-
-  checkEnemyArr(array) {
-    if (array.length > 5) {
-      array.shift()
-    }
-  }
-
-  pushEnemy(array) {
-    array.push(<EnemyContainer hitFunc={this.hitCheck} key={Math.random()} gameOver={this.state.gameOver} /* scoreFunction={this.scoreIncrease} */ />)
   }
 
   renderMap(item) {

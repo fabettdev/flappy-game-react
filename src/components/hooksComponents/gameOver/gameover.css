@@ -1,39 +1,27 @@
-@font-face {
-    font-family: "NicoBold-Regular";
-    src: url(../../../assets/fonts/NicoBold-Regular.woff) format("woff");
-}
-
-@font-face {
-    font-family: "NicoPups-Regular";
-    src: url(../../../assets/fonts/NicoPups-Regular.woff) format("woff");
-}
-
 .gameover-container {
-    background-color: #13283C;
-    width: 500px;
-    height: 500px;
-    border: 5px solid #F59E0A;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
-    position: absolute;
-    z-index: 1;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #13283c;
+  max-width: 30rem;
+  max-height: 30rem;
+  padding: 1rem;
+  border: 5px solid #f59e0a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 1;
 }
 
 .gameover-field {
-    color: #F59E0A;
-    border-color: #F59E0A;
-    font-family: 'NicoPups-Regular';
-    font-size: 30px;
-    padding: 70px;
-    font-weight: bold;
-}
-
-.gameover-field-legend {
-    text-align: center;
+  color: #f59e0a;
+  border-color: #f59e0a;
+  font-family: "NicoPups-Regular";
+  font-size: 30px;
+  padding: 2rem;
+  font-weight: bold;
+  text-align: center;
 }

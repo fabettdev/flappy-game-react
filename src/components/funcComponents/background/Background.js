@@ -24,9 +24,10 @@ function Background(props) {
         <div className="App" style={{ position: 'relative', height: '100vh' }} onMouseDown={onClickPlayerMove}>
             <div className='background-container'>
                 <div ref={background} className='background-css'>
-                    <div ref={midground} className='midground-css'></div>
+                    <div ref={midground} className='midground-css'>
+                        {props.children}
+                    </div>
                 </div>
-                {props.children}
             </div>
         </div >
     )

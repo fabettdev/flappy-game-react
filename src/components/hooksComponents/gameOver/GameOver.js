@@ -22,8 +22,8 @@ function GameOver(props) {
             />
             <fieldset className='gameover-field'>
                 <legend className='gameover-field-legend'>You lost</legend>
-                <p>Score: {props.lastScore}</p>
-                <p>Best Score: {props.bestScore}</p>
+                <p>Score<br />{props.lastScore}</p>
+                <p>Best Score<br />{props.bestScore}</p>
             </fieldset>
             <div className='button-container'>
                 <Button buttonStyle={'green'} buttonLabel={'home'} onClickButton={goToSplash} />

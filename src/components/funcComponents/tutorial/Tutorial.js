@@ -6,7 +6,9 @@ import { Player } from '@lottiefiles/react-lottie-player';
 function Tutorial() {
     return (
         <div className="tutorial">
-            <GameStatusText label={'get ready'} size={'big'} />
+            <div className="title">
+                <GameStatusText label={'get ready'} size={'big'} />
+            </div>
             <div className="label">
                 <GameStatusText label={'tap to jump'} size={'small'} color={'red'} />
             </div>
