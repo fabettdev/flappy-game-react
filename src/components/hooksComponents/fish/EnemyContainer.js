@@ -2,13 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import './fish.css'
 import Fish from './Fish'
 import './enemycontainer.css'
-import eventsBus from '../../../utils/eventBus'
-
-// Massimo 9 pesci
-// Stato pesci sopra
-// Numero random da 1 a 9
-// Stato pesci sopra diventa il numero che esce
-// Stato pesci sotto diventa numero casuale tra 0 e 9 - pesci sopra)
+import PropTypes from 'prop-types';
 
 function EnemyContainer(props) {
     const topDivRef = useRef(null);
@@ -77,4 +71,8 @@ function EnemyContainer(props) {
     )
 }
 
-export default EnemyContainer
+EnemyContainer.propTypes = {
+    hitFunc: PropTypes.func.isRequired,
+}
+
+export default EnemyContainer;

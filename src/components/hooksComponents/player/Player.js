@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import './player.css';
+import PropTypes from 'prop-types';
 
 // import Spritesheet from 'react-responsive-spritesheet';
 
@@ -15,7 +16,6 @@ function Player(props) {
     useEffect(() => {
         let newIndex = null;
         state.classIndex === props.frames ? newIndex = 1 : newIndex = state.classIndex + 1;
-        // if (props.action === 'hurt' && newIndex === props.frames) return;
         timeout = setInterval(() => {
             setState(
                 {
@@ -31,6 +31,16 @@ function Player(props) {
     return (
         <div className={`player ${props.action} ${props.action}${state.classIndex}`}></div>
     )
+}
+
+Player.defaultProps = {
+    frames: 6,
+    action: 'idle',
+}
+
+Player.propTypes = {
+    frames: PropTypes.number.isRequired,
+    action: PropTypes.string.isRequired,
 }
 
 export default Player;

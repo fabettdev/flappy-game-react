@@ -175,8 +175,8 @@ class Game extends Component {
         {
           this.state.gameOver &&
           <GameOver
-            bestScore={this.state.best}
-            lastScore={this.state.score}
+            bestScore={parseInt(this.state.best)}
+            lastScore={parseInt(this.state.score)}
           />
         }
         {

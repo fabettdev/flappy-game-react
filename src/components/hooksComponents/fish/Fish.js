@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import './fish.css';
-import eventsBus from "../../../utils/eventBus";
+import PropTypes from 'prop-types';
 
 function Fish(props) {
     const [state, setState] = useState(
@@ -33,6 +33,11 @@ function Fish(props) {
 
 Fish.defaultProps = {
     fishType: 'default',
+}
+
+Fish.propTypes = {
+    fishType: PropTypes.string,
+    fishStyle: PropTypes.object,
 }
 
 export default Fish;

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import './background.css';
-import eventsBus from "../../../utils/eventBus";
+import PropTypes from 'prop-types';
 
 function Background(props) {
     const background = useRef(null);
@@ -23,12 +23,21 @@ function Background(props) {
     return (
         <div className="App" style={{ position: 'relative', height: '100vh' }} onMouseDown={onClickPlayerMove}>
             <div className='background-container'>
-                <div ref={background} className='background-css'></div>
-                <div ref={midground} className='midground-css'></div>
+                <div ref={background} className='background-css'>
+                    <div ref={midground} className='midground-css'></div>
+                </div>
                 {props.children}
             </div>
         </div >
     )
 }
 
-export default Background
+Background.propTypes = {
+    stopAnimation: PropTypes.bool,
+    children: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.object
+    ]),
+}
+
+export default Background;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import './playerContainer.css';
 import Player from "../player/Player";
 import { jumpEffect } from "../../../utils/audioUtils";
@@ -52,11 +52,12 @@ function PlayerCont(props, ref) {
             transform: 'translateY(-50%)',
         }}>
             {!!props.hasStarted && <Player frames={7} action={'swim'} />}
-            {!props.hasStarted && !props.gameOver && <Player frames={6} action={'idle'} />}
+            {!props.hasStarted && !props.gameOver && <Player />}
             {!!props.gameOver && <Player frames={5} action={'hurt'} />}
         </div>
     )
 }
+
 
 const PlayerContainer = React.forwardRef(PlayerCont);
 

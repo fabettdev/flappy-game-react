@@ -1,12 +1,19 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './gameover.css'
 import '../../../assets/styles/common.css'
 import '../../../screens/splash/splash.css'
 import GameStatusText from '../../funcComponents/gamestatustext/GameStatusText'
 import Button from '../../funcComponents/button/Button';
+import PropTypes from 'prop-types';
 
 function GameOver(props) {
+    const navigate = useNavigate();
+
+    function goToSplash() {
+        navigate('/')
+    }
+
     return (
         <div className='gameover-container'>
             <GameStatusText
@@ -19,15 +26,15 @@ function GameOver(props) {
                 <p>Best Score: {props.bestScore}</p>
             </fieldset>
             <div className='button-container'>
-                <Link
-                    className='button2'
-                    to={'/'}
-                >
-                    HOME
-                </Link>
+                <Button buttonStyle={'green'} buttonLabel={'home'} onClickButton={goToSplash} />
             </div>
         </div>
     )
+}
+
+GameOver.propTypes = {
+    lastScore: PropTypes.number.isRequired,
+    bestScore: PropTypes.number.isRequired,
 }
 
 export default GameOver

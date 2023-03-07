@@ -1,43 +1,36 @@
-.button1 {
+.button {
+  display: flex;
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+  font-family: "NicoPups-Regular";
+  src: local("NicoPups-Regular"),
+    url(../../../assets/fonts/NicoPups-Regular.woff) format("woff");
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.button.orange {
   background-color: #f59e0a;
-  display: flex;
   color: #183543;
-  width: 100px;
-  height: 40px;
-  font-family: "NicoPups-Regular";
-  src: local("NicoPups-Regular"),
-    url(../../../assets/fonts/NicoPups-Regular.woff) format("woff");
-  font-size: 20px;
-  font-weight: 700;
   border: outset #f59e0a;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  text-decoration: none;
 }
 
-.button2 {
+.button.green {
   background-color: #2c6b65;
-  display: flex;
   color: #f59e0a;
-  width: 100px;
-  height: 40px;
-  font-family: "NicoPups-Regular";
-  src: local("NicoPups-Regular"),
-    url(../../../assets/fonts/NicoPups-Regular.woff) format("woff");
-  font-size: 20px;
-  font-weight: 700;
   border: outset #2c6b65;
-  text-align: center;
-  text-decoration: none;
-  justify-content: center;
-  align-items: center;
 }
 
-.button1:active {
+.button.orange:active {
   border: inset #f59e0a;
 }
 
-.button2:active {
+.button.green:active {
   border: inset #2c6b65;
 }
