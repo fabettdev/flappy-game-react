@@ -50,7 +50,7 @@ function EnemyContainer(props) {
             setState(
                 {
                     ...state,
-                    translateX: state.translateX + 2,
+                    translateX: state.translateX + 5,
                 }
             )
         }, 10)

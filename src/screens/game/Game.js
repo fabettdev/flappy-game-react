@@ -37,7 +37,7 @@ class Game extends Component {
       }
       enemyArr.push(<EnemyContainer hitFunc={this.hitCheck} key={Math.random() * Math.random()} gameOver={this.state.gameOver} />)
       this.setState({ enemyList: enemyArr })
-    }, 2500)
+    }, 1200)
   }
 
   componentDidUpdate() {

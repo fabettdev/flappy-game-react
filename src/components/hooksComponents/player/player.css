@@ -5,18 +5,18 @@
 }
 
 .player.swim {
-  width: 10vh;
-  height: 5vh;
+  width: calc(10vh * 1.3);
+  height: calc(5vh * 1.3);
 }
 
 .player.idle {
-  width: 7.8vh;
-  height: 10.2vh;
+  width: calc(7.8vh * 1.3);
+  height: calc(10.2vh * 1.3);
 }
 
 .player.hurt {
-  width: 7.75vh;
-  height: 10vh;
+  width: calc(7.75vh * 1.3);
+  height: calc(10vh * 1.3);
 }
 
 .player.swim1 {
@@ -92,29 +92,29 @@
 }
 
 .player.rush1 {
-  background-image: url(../../../assets/images/player/rush/player-rush1.png)
+  background-image: url(../../../assets/images/player/rush/player-rush1.png);
 }
 
 .player.rush2 {
-  background-image: url(../../../assets/images/player/rush/player-rush2.png)
+  background-image: url(../../../assets/images/player/rush/player-rush2.png);
 }
 
 .player.rush3 {
-  background-image: url(../../../assets/images/player/rush/player-rush3.png)
+  background-image: url(../../../assets/images/player/rush/player-rush3.png);
 }
 
 .player.rush4 {
-  background-image: url(../../../assets/images/player/rush/player-rush4.png)
+  background-image: url(../../../assets/images/player/rush/player-rush4.png);
 }
 
 .player.rush5 {
-  background-image: url(../../../assets/images/player/rush/player-rush5.png)
+  background-image: url(../../../assets/images/player/rush/player-rush5.png);
 }
 
 .player.rush6 {
-  background-image: url(../../../assets/images/player/rush/player-rush6.png)
+  background-image: url(../../../assets/images/player/rush/player-rush6.png);
 }
 
 .player.rush7 {
-  background-image: url(../../../assets/images/player/rush/player-rush7.png)
+  background-image: url(../../../assets/images/player/rush/player-rush7.png);
 }
